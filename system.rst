@@ -3,17 +3,17 @@ NNS系统概述
 
 参考文档 >
 
->\ `NameHash算法详解 <namehash.rst>`__ >
+>\ `NameHash算法详解 <namehash.html>`__ >
 
->\ `NNS协议规范 <protocol.rst>`__ >
+>\ `NNS协议规范 <protocol.html>`__ >
 
->\ `顶级域名合约详解 <contract_nns.rst>`__ >
+>\ `顶级域名合约详解 <contract_nns.html>`__ >
 
->\ `所有者合约详解 <contract_owner.rst>`__ >
+>\ `所有者合约详解 <contract_owner.html>`__ >
 
->\ `注册器合约详解 <contract_register.rst>`__ >
+>\ `注册器合约详解 <contract_register.html>`__ >
 
->\ `解析器合约详解 <contract_resolver.rst>`__ > 
+>\ `解析器合约详解 <contract_resolver.html>`__ > 
 
 NNS 是什么
 =========
