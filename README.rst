@@ -1,37 +1,37 @@
-NEL×éÖ¯¼òÕÂ
+NELç»„ç»‡ç®€ç« 
 ===========
 
-NEL¼ò½é
+NELç®€ä»‹
 -------
 
-NEL£¨NewEconnoLab£©ÊÇNEOÉúÌ¬µÄÖÐ¹ú¿ª·¢Ö¾Ô¸ÕßÉçÇø¡£ÎÒÃÇÖÂÁ¦ÓÚÅàÑøÉçÇø¿ª·¢ÈË²Å£¬ÍÆ¶¯ÏîÄ¿ÂäµØ¡£¼ÓÈëÉçÇøµÄ¿ª·¢ÕßÖ»ÐèÒª¹±Ï×´úÂë¼´¿É£¬¶ÔÓÚ¸Õ½Ó´¥Çø¿éÁ´¼¼Êõ²»¾ÃµÄ¿ª·¢Õß£¬ÎÒÃÇ»á·¢²¼Ò»Ð©¼òµ¥µÄÏîÄ¿×öÒýµ¼¡£ÎÒÃÇºóÆÚÒ²»áÌá³öÉçÇøµÄÖØµãÉÌÒµÏîÄ¿£¬Ñ¡Ôñ»îÔ¾ÇÒÓÐÄÜÁ¦µÄÉçÇø¿ª·¢Õß¹²Í¬²ÎÓë¡£×ÊÉî¿ª·¢ÕßÒ²¿ÉÌá³ö×Ô¼ºµÄÏîÄ¿Ïë·¨£¬ºÅÕÙÉçÇø³ÉÔ±²ÎÓë£¬ÎÒÃÇÒ²»áÐ­Öú¶Ô½Ó¸÷ÖÖ×ÊÔ´¡£Ç°ÆÚÉçÇøÖ÷ÒªÒÔÄ¥ºÏÅàÑøÎªÖ÷£¬ÒÔÐËÈ¤ÎªÇý¶¯£¬Ã»ÓÐ¾­¼Ã¼¤Àø£¬´ýÉçÇøÔËÐÐÁ¼ºÃºó»òÊÇÓÐ¸ß¼ÛÖµÏîÄ¿³öÏÖÊ±»áÊµÐÐ¾­¼Ã¼¤Àø¡£
+NELï¼ˆNewEconnoLabï¼‰æ˜¯NEOç”Ÿæ€çš„ä¸­å›½å¼€å‘å¿—æ„¿è€…ç¤¾åŒºã€‚æˆ‘ä»¬è‡´åŠ›äºŽåŸ¹å…»ç¤¾åŒºå¼€å‘äººæ‰ï¼ŒæŽ¨åŠ¨é¡¹ç›®è½åœ°ã€‚åŠ å…¥ç¤¾åŒºçš„å¼€å‘è€…åªéœ€è¦è´¡çŒ®ä»£ç å³å¯ï¼Œå¯¹äºŽåˆšæŽ¥è§¦åŒºå—é“¾æŠ€æœ¯ä¸ä¹…çš„å¼€å‘è€…ï¼Œæˆ‘ä»¬ä¼šå‘å¸ƒä¸€äº›ç®€å•çš„é¡¹ç›®åšå¼•å¯¼ã€‚æˆ‘ä»¬åŽæœŸä¹Ÿä¼šæå‡ºç¤¾åŒºçš„é‡ç‚¹å•†ä¸šé¡¹ç›®ï¼Œé€‰æ‹©æ´»è·ƒä¸”æœ‰èƒ½åŠ›çš„ç¤¾åŒºå¼€å‘è€…å…±åŒå‚ä¸Žã€‚èµ„æ·±å¼€å‘è€…ä¹Ÿå¯æå‡ºè‡ªå·±çš„é¡¹ç›®æƒ³æ³•ï¼Œå·å¬ç¤¾åŒºæˆå‘˜å‚ä¸Žï¼Œæˆ‘ä»¬ä¹Ÿä¼šååŠ©å¯¹æŽ¥å„ç§èµ„æºã€‚å‰æœŸç¤¾åŒºä¸»è¦ä»¥ç£¨åˆåŸ¹å…»ä¸ºä¸»ï¼Œä»¥å…´è¶£ä¸ºé©±åŠ¨ï¼Œæ²¡æœ‰ç»æµŽæ¿€åŠ±ï¼Œå¾…ç¤¾åŒºè¿è¡Œè‰¯å¥½åŽæˆ–æ˜¯æœ‰é«˜ä»·å€¼é¡¹ç›®å‡ºçŽ°æ—¶ä¼šå®žè¡Œç»æµŽæ¿€åŠ±ã€‚
 
-NEL¼¼Êõ¿ò¼ÜÍ¼
+NELæŠ€æœ¯æ¡†æž¶å›¾
 -------------
 
 .. figure:: NELTechnicalFrameworkDiagram.png
    :alt: NEL Technical Framework Diagram
 
    NEL Technical Framework Diagram
-NEO¿ª·¢¼¼ÊõÑ§Ï°
+NEOå¼€å‘æŠ€æœ¯å­¦ä¹ 
 ---------------
 
-NEL ´î½¨ÁË¶àÖÖ½»Á÷Æ½Ì¨
+NEL æ­å»ºäº†å¤šç§äº¤æµå¹³å°
 
-NELÇø¿éÁ´¼¼Êõ½»Á÷Æ½Ì¨
+NELåŒºå—é“¾æŠ€æœ¯äº¤æµå¹³å°
 ~~~~~~~~~~~~~~~~~~~~~
 
-Ö÷QQÈº£º377076520
+ä¸»QQç¾¤ï¼š377076520
 
-Discord Èº£º\ `discordÑûÇëÁ´½Ó <https://discord.gg/5V874Et>`__
+Discord ç¾¤ï¼š\ `discordé‚€è¯·é“¾æŽ¥ <https://discord.gg/5V874Et>`__
 
-³ÌÐòÔ±QQÈº£º690086107
+ç¨‹åºå‘˜QQç¾¤ï¼š690086107
 
-ÂÛÌ³:......
+è®ºå›:......
 
-NELÐÂ¾­¼ÃÊµÑéÊÒ Î¢ÐÅºÅ£º NewEconoLab
+NELæ–°ç»æµŽå®žéªŒå®¤ å¾®ä¿¡å·ï¼š NewEconoLab
 
-NEO¿ª·¢¼¼ÊõÑ§Ï°ÊÖ²á
+NEOå¼€å‘æŠ€æœ¯å­¦ä¹ æ‰‹å†Œ
 ~~~~~~~~~~~~~~~~~~~
 
-`´«ËÍÃÅ <study/study.md>`__
+`ä¼ é€é—¨ <study/study.md>`__
