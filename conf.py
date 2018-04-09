@@ -136,10 +136,10 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
-latex_documents = [
-    (master_doc, 'NNS.tex', 'NNS Documentation',
-     'Jinghui Liao', 'manual'),
-]
+# latex_documents = [
+#     (master_doc, 'NNS.tex', 'NNS Documentation',
+#      'Jinghui Liao', 'manual'),
+# ]
 
 
 # -- Options for manual page output ------------------------------------------
