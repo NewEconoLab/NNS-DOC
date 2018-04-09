@@ -34,4 +34,4 @@ NEL新经济实验室 微信号： NewEconoLab
 NEO开发技术学习手册
 ~~~~~~~~~~~~~~~~~~~
 
-`传送门 <study/study.md>`__
+`传送门 <study/study.rst>`__
