@@ -9,10 +9,11 @@ NEL（NewEconnoLab）是NEO生态的中国开发志愿者社区。我们致力�
 NEL技术框架图
 -------------
 
-.. figure:: NELTechnicalFrameworkDiagram.png
+.. image::image/NELTechnicalFrameworkDiagram.png
    :alt: NEL Technical Framework Diagram
 
    NEL Technical Framework Diagram
+   
 NEO开发技术学习
 ---------------
 
