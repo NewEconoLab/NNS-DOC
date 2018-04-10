@@ -148,7 +148,7 @@
 返回类型为byte[]，具体byte[]如何解读，由不同的协议定义，addr协议，byte[]就存的字符串。
 协议约定另外撰文。
 
-除了二级域名的解析，必须使用resolve("http",hash,0)的方式，其余的解析建议都使用resolve("http",hash,“aa")的方式。
+除了二级域名的解析，必须使用resolve("http",hash,0)的方式，其余的解析建议都使用resolve("http",hash,"aa")的方式。
 
 域名完整解析
 -----------
