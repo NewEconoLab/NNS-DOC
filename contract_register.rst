@@ -2,10 +2,7 @@
 注册器合约
 ************
 
-工作方式
-========
-
-注册合约采用Appcall的形式调用顶级域名合约的register\_SetSubdomainOwner接口
+注册器合约采用Appcall的形式调用顶级域名合约的register\_SetSubdomainOwner接口
 
 ::
 

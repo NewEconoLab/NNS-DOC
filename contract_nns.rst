@@ -45,7 +45,7 @@
 
 ::
 
-    rootName
+    rootName()
 
 返回当前顶级域名合约对应的根域名 返回值为string
 
@@ -54,7 +54,7 @@
 
 ::
 
-    rootNameHash
+    rootNameHash()
 
 返回当前顶级域名合约对应的NameHash 返回值为byte[]
 
@@ -76,7 +76,7 @@
         BigInteger ttl//到期时间
     ]
 
-单极域名哈希
+单级域名哈希
 -----------
 
 ::

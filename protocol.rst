@@ -11,7 +11,7 @@ NNS 协议
 
 其中：
 
- - http是协议(protocol)，NNS服务请求时会把域名和协议分开传递.
+ - http是协议(protocol)，NNS服务请求时会把域名和协议分开传递
  - aaa.bbb.test是域名，NNS服务请求时使用域名的hash
  - xxx是路径，路径不是在dns的层次处理，对于nns也一样，如果有路径，交由其他的方式处理
 

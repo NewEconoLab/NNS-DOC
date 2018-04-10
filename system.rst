@@ -108,22 +108,22 @@ NNS最主要的功能，就是完成从域名到解析器的映射。
 
 NNS中存储的域名为32字节散列值，而不是域名原文的文本。这有几个设计原因：
 
-1. 处理过程统一，允许任意长度的域名。 
+1. 处理过程统一，允许任意长度的域名
 
 2. 一定程度保留了域名的隐私 
 
-3. 将域名转换为散列的算法称为NameHash，我们将在其他的文档资料中对他进行解释。
+3. 将域名转换为散列的算法称为NameHash，我们将在其他的文档资料中对他进行解释
 
 NameHash的定义方式为递归式
 
 ::
 
-    比如aaa.neo 对应的
-    hashA  =  hash256(hash256(“.neo”) + “aaa”)
-    然后 bbb.aaa.neo对应的
-    hashB  =  hash256(hashA+”bbb”)  
-    那么 ccc.bbb.aaa.neo 对应的
-    HashC  =  hash256(hashB+”ccc”)
+    //aaa.neo 对应
+    hashA  =  hash256(hash256(".neo") + "aaa")
+    //bbb.aaa.neo对应
+    hashB  =  hash256(hashA + "bbb")  
+    //ccc.bbb.aaa.neo 对应
+    HashC  =  hash256(hashB + "ccc")
 
 这样的定义方式让我们可以将所有层次的域名，一级，二级到无数级，都扁平化的保存在一个Map
 的数据结构中。
