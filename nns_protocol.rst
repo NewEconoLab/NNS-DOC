@@ -44,6 +44,8 @@ script协议
 
 **script://abc.test** 可以指向 0xf3b1c99910babe5c23d0b4fd0104ee84ffeec2a5
 
+.. _namehash:
+
 NameHash算法详解
 ===============
 
