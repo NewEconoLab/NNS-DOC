@@ -22,29 +22,23 @@ NNS的协议使用字符串定义
 http协议
 ========
 
-::
-
-    http协议指向一个string,表示一个互联网地址
+**http** 协议指向一个string,表示一个互联网地址
 
 addr协议
 ========
 
-::
-
-    addr协议指向一个string，表示一个NEO address，形如 AdzQq1DmnHq86yyDUkU3jKdHwLUe2MLAVv
+**addr** 协议指向一个string，表示一个NEO address，形如 AdzQq1DmnHq86yyDUkU3jKdHwLUe2MLAVv
 
 script协议
 ==========
 
-::
-
-    script协议指向一个byte[],表示一个NEO ScriptHash，形如0xf3b1c99910babe5c23d0b4fd0104ee84ffeec2a5
+**script** 协议指向一个byte[],表示一个NEO ScriptHash，形如0xf3b1c99910babe5c23d0b4fd0104ee84ffeec2a5
 
 同一域名的不同协议做不同处理
 
-::
+**http://abc.test** 可以指向 http://www.163.com
 
-    http://abc.test 可以指向 http://www.163.com
-    addr://abc.test 可以指向 AdzQq1DmnHq86yyDUkU3jKdHwLUe2MLAVv
-    script://abc.test 可以指向 0xf3b1c99910babe5c23d0b4fd0104ee84ffeec2a5
+**addr://abc.test** 可以指向 AdzQq1DmnHq86yyDUkU3jKdHwLUe2MLAVv
+
+**script://abc.test** 可以指向 0xf3b1c99910babe5c23d0b4fd0104ee84ffeec2a5
 

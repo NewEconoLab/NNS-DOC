@@ -115,7 +115,7 @@
 
      nameHashArray(string[] nameArray)
 
-计算NameArray的NameHash，aa.bb.cc.test
+计算NameArray的NameHash，aa.bb.cc.test,
 对应的nameArray是["test","cc","bb","aa"]
 
 ::
@@ -160,7 +160,7 @@
 解析域名，完整模式
 
 - **protocol** 协议类型
-- ** nameArray** 域名
+- **nameArray** 要解析的域名数组
 
 这种解析方式唯一的不同就是会逐级验证一下所有权是否和登记的一致，一般用resolve即可
 
@@ -202,7 +202,7 @@ xxx)的形式。 xxx 均是scripthash。
 
 域名注册器参数形式必须也是0710，返回05
 
-必须实现如下接口
+必须实现如下接口：
 
 ::
 
@@ -214,7 +214,7 @@ xxx)的形式。 xxx 均是scripthash。
 
         getSubOwner(byte[] nnshash,string subdomain)
 
-任何人可调用注册器的接口检查子域的所有者
+任何人可调用注册器的接口检查子域的所有者。
 
 对于域名注册器的其他接口形式不做规范，官方提供的注册器会另外撰文说明。
 
