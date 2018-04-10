@@ -103,21 +103,30 @@ NNS中存储的域名为32字节散列值，而不是域名原文的文本。这
 
 3. 将域名转换为散列的算法称为NameHash，我们将在其他的文档资料中对他进行解释。 NameHash的定义方式为递归式
 
-4. 比如aaa.neo 对应的
+比如aaa.neo 对应
 
-5. hashA  =  hash256(hash256("neo") + "aaa")
+::
 
-6. 然后 bbb.aaa.neo对应的
+    hashA  =  hash256(hash256("neo") + "aaa")
 
-7. hashB  =  hash256(hashA + "bbb")	
+bbb.aaa.neo对应
 
-8. 那么 ccc.bbb.aaa.neo 对应的
+::
 
-9. HashC  =  hash256(hashB+"ccc")
+    hashB  =  hash256(hashA + "bbb")	
+
+那么 ccc.bbb.aaa.neo 对应
+
+::
+
+    HashC  =  hash256(hashB+"ccc")
 
 这样的定义方式让我们可以将所有层次的域名，一级，二级到无数级，都扁平化的保存在一个Map<hash256, 解析器> 的数据结构中。
 
-这正是注册器保存域名解析的方法，这个递归计算NameHash的方式，可以用一个函数表达 Hash = NameHash("xxx.xxx.xxx…"); 
+这正是注册器保存域名解析的方法，这个递归计算NameHash的方式，可以用一个函数表达:
+ 
+::
+    Hash = NameHash("xxx.xxx.xxx…"); 
 
 NameHash实现方法请参考:ref:`namehash`。
 
