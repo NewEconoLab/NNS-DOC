@@ -1,8 +1,9 @@
+************
 顶级域名合约
-============
+************
 
 顶级域名合约的函数签名
-----------------------
+======================
 
 函数签名如下
 
@@ -12,19 +13,17 @@
 
 部署时采用 参数 0710，返回值 05 的配置
 
-顶级域名合约的接口
-------------------
+顶级域名合约接口
+==================
 
 顶级域名的接口分为三部分
 
-一种为 通用接口，不需要权限验证，所有人都可以调用
-
-一种为 所有者接口，仅接受所有者签名，或者由所有者脚本调用有效
-
-一种为 注册器接口，仅接受由注册器脚本调用有效
+ - **通用接口** 不需要权限验证，所有人都可以调用
+ - **所有者接口** 仅接受所有者签名，或者由所有者脚本调用有效
+ - **注册器接口** 仅接受由注册器脚本调用有效
 
 通用接口
---------
+-------
 
 通用接口，不需要权限验证。 代码如下
 
@@ -47,18 +46,29 @@
     if (method == "resolveFull")
         return resolveFull((string)args[0], (string[])args[1]);
 
-rootName
-^^^^^^^^
+根域名
+~~~~~~
+
+::
+    rootName
 
 返回当前顶级域名合约对应的根域名 返回值为string
 
-rootNameHash
-^^^^^^^^^^^^
+顶级域名哈希
+~~~~~~~~~~~~
+
+::
+
+    rootNameHash
 
 返回当前顶级域名合约对应的NameHash 返回值为byte[]
 
-getInfo(byte[] namehash)
-^^^^^^^^^^^^^^^^^^^^^^^^
+域名信息
+~~~~~~~~~~
+
+::
+    
+    getInfo(byte[] namehash)
 
 返回一个域名的信息 返回值为一个如下数组
 
@@ -71,8 +81,12 @@ getInfo(byte[] namehash)
         BigInteger ttl//到期时间
     ]
 
-nameHash(string domain)
-^^^^^^^^^^^^^^^^^^^^^^^
+单极域名哈希
+~~~~~~~~~~~~
+
+::
+
+    nameHash(string domain)
 
 将域名的一节转换为NameHash 比如
 
@@ -83,8 +97,12 @@ nameHash(string domain)
 
 返回值为byte[]
 
-nameHashSub(byte[] domainhash,string subdomain)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+子域名哈希
+~~~~~~~~~~
+
+::
+
+    nameHashSub(byte[] domainhash,string subdomain)
 
 计算子域名的NameHash, 比如
 
@@ -95,8 +113,12 @@ nameHashSub(byte[] domainhash,string subdomain)
 
 返回值为byte[]
 
-nameHashArray(string[] nameArray)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+域名哈希
+~~~~~~~~~
+
+::
+
+     nameHashArray(string[] nameArray)
 
 计算NameArray的NameHash，aa.bb.cc.test
 对应的nameArray是["test","cc","bb","aa"]
@@ -105,18 +127,16 @@ nameHashArray(string[] nameArray)
 
     var hash = nameHashArray(["test","cc","bb","aa"]);
 
-resolve(string protocol,byte[] hash,string or int(0) subdomain)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 解析域名
+~~~~~~~~~
 
 ::
 
-    第一个参数为协议
-        比如http是将域名映射为一个网络地址
-        比如addr是将域名映射为一个NEO地址（这可能是最常用的映射）
-    第二个参数为要解析的域名Hash
-    第三个参数为要解析的子域名Name
+    resolve(string protocol,byte[] hash,string or int(0) subdomain)
+
+- **protocol** 协议类型。比如http是将域名映射为一个网络地址，addr是将域名映射为一个NEO地址（这可能是最常用的映射）
+- **hash** 要解析的域名Hash
+- **subdomain** 要解析的子域名Name
 
 应用代码如下
 
@@ -134,19 +154,25 @@ resolve(string protocol,byte[] hash,string or int(0) subdomain)
 协议约定另外撰文。
 
 除了二级域名的解析，必须使用resolve("http",hash,0)的方式，其余的解析建议都使用resolve("http",hash,“aa")的方式。
-#### resolveFull(string protocol,string[] nameArray) 解析域名，完整模式
+
+域名完整解析
+~~~~~~~~~~~~
 
 ::
 
-    第一个参数为协议
-    第二个参数为NameArray
+    resolveFull(string protocol,string[] nameArray)
+
+解析域名，完整模式
+
+- **protocol** 协议类型
+- ** nameArray** 域名
 
 这种解析方式唯一的不同就是会逐级验证一下所有权是否和登记的一致，一般用resolve即可
 
 返回类型同resolve
 
 所有者接口
-----------
+---------
 
 所有者接口全部为 owner\_SetXXX(byte[] srcowner,byte[] nnshash,byte[]
 xxx)的形式。 xxx 均是scripthash。
@@ -157,19 +183,25 @@ xxx)的形式。 xxx 均是scripthash。
 
 如果所有者是智能合约，那么所有者应该自己判断权限，不满足条件，不要发起对顶级域名合约的appcall
 
-owner\_SetOwner(byte[] srcowner,byte[] nnshash,byte[] newowner)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+域名转让
+~~~~~~~~
+
+::
+
+    owner\_SetOwner(byte[] srcowner,byte[] nnshash,byte[] newowner)
 
 转让域名所有权，域名的所有者可以是一个账户地址，也可以是一个智能合约。
 
-srcowner 仅在 所有者是账户地址时用来验证签名，他是地址的scripthash
+- **srcowner** 仅在 所有者是账户地址时用来验证签名，他是地址的scripthash
+- **nnshash** 是要操作的域名namehash
+- **newowner** 是新的所有者的地址的scripthash
 
-nnshash 是要操作的域名namehash
+域名注册
+~~~~~~~~~
 
-newowner 是新的所有者的地址的scripthash
+::
 
-owner\_SetRegister(byte[] srcowner,byte[] nnshash,byte[] newregister)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    owner\_SetRegister(byte[] srcowner,byte[] nnshash,byte[] newregister)
 
 设置域名注册器合约（域名注册器为一个智能合约）
 
@@ -193,8 +225,12 @@ owner\_SetRegister(byte[] srcowner,byte[] nnshash,byte[] newregister)
 
 用户自己实现的域名注册器，仅需实现getSubOwner接口
 
-owner\_SetResolve(byte[] srcowner,byte[] nnshash,byte[] newresolver)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+域名解析
+~~~~~~~~
+
+::
+
+    owner\_SetResolve(byte[] srcowner,byte[] nnshash,byte[] newresolver)
 
 设置域名解析器合约（域名解析器为一个智能合约）
 
@@ -219,21 +255,19 @@ owner\_SetResolve(byte[] srcowner,byte[] nnshash,byte[] newresolver)
 用户自己实现的域名解析器，仅需实现resolve 接口
 
 注册器接口
-----------
+---------
 
 注册器接口由注册器智能合约进行调用，只有一个
 
-register\_SetSubdomainOwner(byte[] nnshash,string subdomain,byte[] newowner,BigInteger ttl)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+::
+
+    register\_SetSubdomainOwner(byte[] nnshash,string subdomain,byte[] newowner,BigInteger ttl)
 
 注册一个子域名
 
-nnshash 是要操作的域名namehash
-
-subdomain 是要操作的子域名
-
-newowner 是新的所有者的地址的scripthash
-
-ttl 是域名过期时间（区块高度）
+ - **nnshash** 是要操作的域名namehash
+ - **subdomain** 是要操作的子域名
+ - **newowner** 是新的所有者的地址的scripthash
+ - **ttl** 是域名过期时间（区块高度）
 
 成功返回 [1] ,失败返回 [0]

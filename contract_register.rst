@@ -1,8 +1,9 @@
+************
 注册器合约
-==========
+************
 
 注册器合约工作方式
-------------------
+==================
 
 注册合约采用Appcall的形式调用顶级域名合约的register\_SetSubdomainOwner接口
 
@@ -16,7 +17,7 @@
 所以只有指定的注册器合约可以实现管理。
 
 注册器接口
-----------
+==========
 
 注册器参数形式必须也是0710，返回05
 
@@ -30,8 +31,11 @@
                 return requestSubDomain((byte[])args[0], (byte[])args[1], (string)args[2]);
             ...
 
-getSubOwner(byte[] nnshash,string subdomain)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+查询拥有者
+---------
+
+::
+    getSubOwner(byte[] nnshash,string subdomain)
 
 此接口为注册器规范要求，必须实现，完整解析域名时会调用此接口验证权利
 
@@ -41,13 +45,14 @@ subdomain 为子域名
 
 返回 byte[] 所有者地址，或者空
 
-requestSubDomain(byte[] who,byte[] nnshash,string subdomain)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+申请域名
+-------
+
+::
+        requestSubDomain(byte[] who,byte[] nnshash,string subdomain)
 
 此接口为演示的先到先得注册器使用，用户调用注册器的这个接口申请域名
 
-who谁在申请
-
-nnshash 申请哪个域名
-
-subdomain 申请的子域名
+ - **who** 谁在申请
+ - **nnshash** 申请哪个域名
+ - **subdomain** 申请的子域名
