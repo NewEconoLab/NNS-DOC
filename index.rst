@@ -10,14 +10,11 @@ Welcome to NNS's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   README
-   system
-   protocol
-   contract_nns
-   contract_owner
-   contract_register
-   contract_resolver
-   namehash
+   nns_background
+   nns_system
+   nns_protocol
+   nns_summary
+   nns_reference
 
 
 
