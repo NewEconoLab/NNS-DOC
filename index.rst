@@ -10,6 +10,7 @@ Welcome to NNS's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   README
    system
    protocol
    contract_nns

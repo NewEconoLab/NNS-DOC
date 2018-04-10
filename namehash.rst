@@ -31,7 +31,8 @@ NNS服务使用的不是域名，而是域名的名字数组，这样处理起�
 
 你可以这样调用解析
 
-:: 
+::
+
         NNS.ResolveFull("http",["test","bb","aa"]);
 
 交由合约去计算出namehash ## NameHash算法
