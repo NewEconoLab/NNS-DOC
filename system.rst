@@ -1,20 +1,15 @@
 ************
-NNS系统概述
+NNS概述
 ************
 
-参考文档 >
+参考文档 
 
->\ `NameHash算法详解 <namehash.html>`__ >
-
->\ `NNS协议规范 <protocol.html>`__ >
-
->\ `顶级域名合约详解 <contract_nns.html>`__ >
-
->\ `所有者合约详解 <contract_owner.html>`__ >
-
->\ `注册器合约详解 <contract_register.html>`__ >
-
->\ `解析器合约详解 <contract_resolver.html>`__ > 
+\ `NameHash算法详解 <namehash.html>`__ 
+\ `NNS协议规范 <protocol.html>`__ 
+\ `顶级域名合约详解 <contract_nns.html>`__ 
+\ `所有者合约详解 <contract_owner.html>`__ 
+\ `注册器合约详解 <contract_register.html>`__ 
+\ `解析器合约详解 <contract_resolver.html>`__ 
 
 NNS 是什么
 ==========
@@ -77,10 +72,8 @@ NNS有四个系统组件
 
 3. 更改解析器允许所有者是一个智能合约，可以提供多种多样的所有权模式 
 
-::
-
-    - 双人共有域名，要两人签名才可以转让域名或者更改注册器 
-    - 多人共有域名，超过50%人签名才可以转让域名或者更改注册器
+- 双人共有域名，要两人签名才可以转让域名或者更改注册器 
+- 多人共有域名，超过50%人签名才可以转让域名或者更改注册器
 
 如果域名的所有者是一个账户地址，那么用户可以调用注册器的接口管理二级域名。
 
@@ -136,14 +129,12 @@ NameHash的定义方式为递归式
 
 ::
 
-    ```
     比如aaa.neo 对应的
     hashA  =  hash256(hash256(“.neo”) + “aaa”)
     然后 bbb.aaa.neo对应的
     hashB  =  hash256(hashA+”bbb”)  
     那么 ccc.bbb.aaa.neo 对应的
     HashC  =  hash256(hashB+”ccc”)
-    ```
 
 这样的定义方式让我们可以将所有层次的域名，一级，二级到无数级，都扁平化的保存在一个Map
 的数据结构中。

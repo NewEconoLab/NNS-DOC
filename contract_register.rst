@@ -35,6 +35,7 @@
 ---------
 
 ::
+
     getSubOwner(byte[] nnshash,string subdomain)
 
 此接口为注册器规范要求，必须实现，完整解析域名时会调用此接口验证权利
@@ -49,6 +50,7 @@ subdomain 为子域名
 -------
 
 ::
+
         requestSubDomain(byte[] who,byte[] nnshash,string subdomain)
 
 此接口为演示的先到先得注册器使用，用户调用注册器的这个接口申请域名
