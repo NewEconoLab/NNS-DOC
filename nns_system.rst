@@ -126,9 +126,10 @@ bbb.aaa.neo对应
 这正是注册器保存域名解析的方法，这个递归计算NameHash的方式，可以用一个函数表达:
  
 ::
+
     Hash = NameHash("xxx.xxx.xxx…"); 
 
-NameHash实现方法请参考:ref:`namehash`。
+NameHash实现方法请参考 :ref:`namehash`。
 
 解析过程                                                 
 ~~~~~~~~
