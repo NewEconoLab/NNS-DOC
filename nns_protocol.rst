@@ -574,8 +574,8 @@ NNS仍然会采用竞标的方式实现域名的初始注册分发，但是和EN
 但是透明増价竞拍会有一个问题，如果竞拍期是确定的，那么没人愿意在一开始的时候就为域名出价，这样别人就可以在快结束的时候出比你稍多一点的钱来获得域名。
 
 ..  image:: image/bid.png
-   :height: 351px
-   :width: 300px
+   :height: 700px
+   :width: 800px
    :scale: 100%
    :alt: NNS logo
    :align: center
