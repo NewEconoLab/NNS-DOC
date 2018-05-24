@@ -20,8 +20,8 @@
 # -- Project information -----------------------------------------------------
 
 project = 'NNS'
-copyright = '2018, Jinghui Liao'
-author = 'Jinghui Liao'
+copyright = '2018, NEL'
+author = 'Yongxin Liu; Jianying Li'
 
 # The short X.Y version
 version = ''
@@ -138,7 +138,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'NNS.tex', 'NNS Documentation',
-     'Jinghui Liao', 'manual'),
+     'Yongxin Liu; Jianying Li', 'manual'),
 ]
 
 
