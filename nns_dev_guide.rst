@@ -218,15 +218,26 @@ NNS开发者手册
 
 ::
 
-    var result = await nns_common.api_SendTransaction(prikey, reg_sc, "endSelling",
-        "(hex160)" + who.ToString(),//参数1 who
-        "(hex256)" + id.ToString()//参数2 交易id
-        );
+    appCall:DAPP_REG
+    method:endSelling
+    params:[
+        who:竞拍人,
+        bid_id：竞拍id
+    ]
 
-- **prikey** 用户私钥 byte[]
-- **reg_sc** 注册器地址 Hash160
-- **参数1** 用户地址 hex160
-- **参数2** 交易id hex256
+交易类型：InvocationTransaction
+签名：用户签名
+
+交易执行结果:
+
+::
+
+    {
+	"jsonrpc": "2.0",
+	"id": 1,
+	"result": true
+    }
+
 
 SGAS
 -------------
@@ -410,6 +421,7 @@ NNC是NNS系统内部为了实现SGAS循环而发布的UTXO资产，最小单位
 执行结果：
 
 ::
+
     {
 	"jsonrpc": "2.0",
 	"id": 1,
@@ -443,9 +455,13 @@ NNC是NNS系统内部为了实现SGAS循环而发布的UTXO资产，最小单位
 -------
 
 域名拍卖id	hex256
+
 用户地址	hex160
+
 域名哈希	hex256
+
 合约地址	hex160
+
 用户资产    BigIngeger
 
 变量/参数定义
@@ -455,7 +471,9 @@ NNC是NNS系统内部为了实现SGAS循环而发布的UTXO资产，最小单位
 ~~~~~~~~
 
 SGAS合约：DAPP_SGAS=>hex160
+
 NNC合约： DAPP_NNC =>hex160
+
 注册器：  DAPP_REG =>hex160
 
 
@@ -463,16 +481,22 @@ NNC合约： DAPP_NNC =>hex160
 ~~~~~~~
 
 转账源地址：who     =>hex160
+
 转账目的地址：target =>hex160
+
 转账金额：amount =>BigIngeger
 
 域名拍卖
 ~~~~~~~~~~
 
 拍卖id ：bid_id =>hex256
+
 域名哈希：domain_hash => hex256
+
 根域名哈希：root_hash =>hex256
+
 子域名：sub_domain =>string
+
 域名完全哈希：full_hash=>hex256
 
 数据结构
@@ -488,7 +512,9 @@ NNS合约的对外统一接口有两个参数，一个是用于接收具体命�
 
 {
     appCall：合约地址
+
     method：合约方法
+    
     params：参数列表
 }
 
