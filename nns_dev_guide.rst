@@ -2,6 +2,13 @@
 NNS开发者手册
 **************
 
+.. toctree::
+
+    nns_dev_guide_nnc
+    nns_dev_guide_nns
+    nns_dev_guide_sgas
+    nns_dev_guide_config
+
 现阶段NNS在测试网已经部署完成，主网部署也即将进行，开发者可以根据本指导手册完成在自己开发的NEO钱包中对NNS的接入。
 
 测试网NNS系统合约地址:
@@ -14,14 +21,7 @@ NNS开发者手册
 #. SGAS*********************** 0xc7816d11287c08135f4e5f907af9e39754910ba3
 #. nnc（包含资金池）************ 0xd8fa0cfdd54493dfc9e908b26ba165605363137b
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
 
-    nns_dev_guide_nnc
-    nns_dev_guide_nns
-    nns_dev_guide_sgas
-    nns_dev_guide_config
 
 
 先到先得注册器
