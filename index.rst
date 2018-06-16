@@ -7,18 +7,18 @@ Welcome to NNS's documentation!
 ===============================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Contents:
 
    nns_background
    nns_system
    nns_protocol
    nns_summary
-   ./guide/nns_dev_guide
-   ./guide/nns_dev_guide_nnc
-   ./guide/nns_dev_guide_nnc
-   ./guide/nns_dev_guide_nns
-   ./guide/nns_dev_guide_sgas
+   guide/nns_dev_guide
+   guide/nns_dev_guide_nnc
+   guide/nns_dev_guide_nnc
+   guide/nns_dev_guide_nns
+   guide/nns_dev_guide_sgas
    nns_reference
 
 
