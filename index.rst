@@ -7,7 +7,7 @@ Welcome to NNS's documentation!
 ===============================
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    :caption: Contents:
 
    nns_background
@@ -15,10 +15,6 @@ Welcome to NNS's documentation!
    nns_protocol
    nns_summary
    nns_dev_guide
-   nns_dev_guide_nnc
-   nns_dev_guide_nns
-   nns_dev_guide_sgas
-   nns_dev_guide_config
    nns_reference
 
 
