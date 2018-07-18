@@ -4,7 +4,6 @@ NNS开发者手册
 
 .. toctree::
 
-    nns_dev_guide_nnc
     nns_dev_guide_nns
     nns_dev_guide_sgas
     nns_dev_api
