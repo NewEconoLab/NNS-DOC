@@ -1,0 +1,390 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>NNC 开发者手册 &#8212; NNS  文档</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="nns_dev_guide_nns.html" />
+    <link rel="prev" title="NNS开发者手册" href="nns_dev_guide.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="nns_dev_guide_nns.html" title="&lt;no title&gt;"
+             accesskey="N">下一页</a> |</li>
+        <li class="right" >
+          <a href="nns_dev_guide.html" title="NNS开发者手册"
+             accesskey="P">上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">NNS  文档</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="nns_dev_guide.html" accesskey="U">NNS开发者手册</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="nnc">
+<h1>NNC 开发者手册<a class="headerlink" href="#nnc" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>获取nnc发行总量<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>本接口用于获取NNC的总发行量</p>
+<p>合约脚本格式：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>appCall:  DAPP_NNC
+method:   totalSupply
+params:   []
+交易类型：InvocationTransaction
+签名：    无
+</pre></div>
+</div>
+<p>交易执行结果：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="s2">&quot;jsonrpc&quot;</span><span class="p">:</span> <span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+<span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>结果解析路径：</p>
+<p>例：【totalSupply =result[‘stack’][‘value’][0][‘value’]】</p>
+</div>
+<div class="section" id="id2">
+<h2>获取NNC合约名<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>合约脚本格式：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>appCall:  DAPP_NNC
+method:   name
+params:   []
+交易类型：InvocationTransaction
+签名：    无
+</pre></div>
+</div>
+<p>交易执行结果：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="s2">&quot;jsonrpc&quot;</span><span class="p">:</span> <span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+<span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>结果解析路径：</p>
+<p>例：【name =result[‘stack’][‘value’][0][‘value’]】</p>
+</div>
+<div class="section" id="id3">
+<h2>获取NNC的符号<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>NEP5标准方法，用于获取token的符号。</p>
+<p>合约脚本格式：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>appCall: DAPP_NNC
+method:      symbol
+params:      []
+交易类型：InvocationTransaction
+签名：    无
+</pre></div>
+</div>
+<p>交易执行结果：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+ <span class="s2">&quot;jsonrpc&quot;</span><span class="p">:</span> <span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+ <span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">true</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+<p>结果解析路径：</p>
+<p>例：【symbol =result[‘stack’][‘value’][0][‘value’]】</p>
+</div>
+<div class="section" id="id4">
+<h2>获取NNC精度<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>NEP5标准方法，用于获取token的精度。</p>
+<p>合约脚本格式：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>appCall: DAPP_NNC
+method:      decimals
+params:      []
+交易类型：InvocationTransaction
+签名：    无
+</pre></div>
+</div>
+<p>交易执行结果：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+ <span class="s2">&quot;jsonrpc&quot;</span><span class="p">:</span> <span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+ <span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>结果解析路径：</p>
+<p>例：【decimals =result[‘stack’][‘value’][0][‘value’]】</p>
+</div>
+<div class="section" id="id5">
+<h2>初始化nnc<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>在NNC合约部署后，由管理员进行初始化操作，本接口只能管理员调用。</p>
+<p>合约脚本格式：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>appCall:   DAPP_NNC
+method:    symbol
+params:    []
+交易类型： InvocationTransaction
+签名：     管理员签名
+</pre></div>
+</div>
+<p>交易执行结果：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+ <span class="s2">&quot;jsonrpc&quot;</span><span class="p">:</span> <span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+ <span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">true</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>获取账户余额<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p>合约脚本格式：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>appCall: DAPP_NNC
+method:  balanceOf
+params:      [who]
+交易类型：InvocationTransaction
+签名：  无
+</pre></div>
+</div>
+<p>交易执行结果：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+ <span class="s2">&quot;jsonrpc&quot;</span><span class="p">:</span> <span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+ <span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">true</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+<p>结果解析路径：</p>
+<p>例：【balanceOf =result[‘stack’][‘value’][0][‘value’]】</p>
+</div>
+<div class="section" id="id7">
+<h2>普通账户转账<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<p>NEP5标准方法，用于账户间NNC的转账</p>
+<p>合约脚本格式：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>appCall: DAPP_NNC
+method:      transfer
+params:      [from,to,value]
+交易类型：InvocationTransaction
+签名：    需要from的签名
+</pre></div>
+</div>
+<p>交易执行结果：</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>{</dt>
+<dd><p class="first">“jsonrpc”:”2.0”,
+“id”:1,
+“result”:[</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>{</dt>
+<dd>“sendrawtransactionresult”:true,
+“txid”:”0x3902ed858b4ae73619ec57fbf70730aa6129ba6f6ca910fb1c3f08d552f03ec9”</dd>
+</dl>
+<p>}]</p>
+</div></blockquote>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+</div>
+<div class="section" id="id8">
+<h2>合约调用NNC转账<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h2>
+<p>本方法是为了提供NNS转入SGAS手续费的时候使用，仅仅能从别的合约动态调用，无法通过交易触发。</p>
+<p>本接口首先通过SGAS合约将注册器合约收取的手续费转入到NNC合约地址，然后调用NNC，标记转入的SGAS数量。</p>
+<p>合约脚本格式：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>appCall: DAPP_SGAS
+method:      transfer_app
+params:      [who,target,value]
+appCall: DAPP_NCC
+method:  useGas
+params:      [txid]
+交易类型：InvocationTransaction
+签名：  无
+</pre></div>
+</div>
+<p>交易执行结果：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+ <span class="s2">&quot;jsonrpc&quot;</span><span class="p">:</span> <span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+ <span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">true</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id9">
+<h2>领取分红<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h2>
+<p>NNS系统的域名注册手续费收益会完全再分配给NNC的持有者，用户可以通过调用本方法领取属于自己的SGAS分红。</p>
+<p>合约脚本格式：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>appCall: DAPP_REG
+method:      claim
+params:      [who]
+交易类型：InvocationTransaction
+签名：   用户
+</pre></div>
+</div>
+<p>交易执行结果：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+     <span class="s2">&quot;jsonrpc&quot;</span><span class="p">:</span> <span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+     <span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="p">[{</span>
+             <span class="s2">&quot;sendrawtransactionresult&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+             <span class="s2">&quot;txid&quot;</span><span class="p">:</span> <span class="s2">&quot;0x376df8dd0c03ef5184f8ea28da98fe9da81f0c1e2aa6e86f8e86c14f83a3e3d1&quot;</span>
+     <span class="p">}]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id10">
+<h2>查询可以领取的分红数<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h2>
+<p>本方法用于查询用户可以提取的分红数量。</p>
+<p>合约脚本格式：</p>
+<dl class="docutils">
+<dt>::</dt>
+<dd>appCall:    DAPP_REG
+method:     canClaimCount
+params:     [who]
+交易类型：       InvocationTransaction
+签名： 无</dd>
+</dl>
+<p>交易执行结果：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+     <span class="s2">&quot;jsonrpc&quot;</span><span class="p">:</span> <span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+     <span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="p">[{</span>
+             <span class="s2">&quot;script&quot;</span><span class="p">:</span> <span class="s2">&quot;1436630a8759e5000f88500017adfa5c8fe2be32ff51c10d63616e436c61696d436f756e74677b1363536065a16bb208e9c9df9344d5fd0cfad8&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;HALT, BREAK&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;gas_consumed&quot;</span><span class="p">:</span> <span class="s2">&quot;0.476&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;stack&quot;</span><span class="p">:</span> <span class="p">[{</span>
+                     <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Integer&quot;</span><span class="p">,</span>
+                     <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;200000001&quot;</span>
+             <span class="p">}]</span>
+     <span class="p">}]</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+<p>结果解析路径</p>
+<p>例：【claimCount=result[‘stack’][0][‘value’][‘value’]】</p>
+</div>
+<div class="section" id="id11">
+<h2>查询系统费收入<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h2>
+<p>通过调用这个接口可以获取到当前NNS系统已收取且未被cliam的sgas手续费总量。</p>
+<p>合约脚本格式：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>appCall:  DAPP_REG
+method:       getTotalMoney
+params:       []
+交易类型： InvocationTransaction
+签名：   无
+</pre></div>
+</div>
+<p>交易执行结果：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+     <span class="s2">&quot;jsonrpc&quot;</span><span class="p">:</span> <span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+     <span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="p">[{</span>
+             <span class="s2">&quot;script&quot;</span><span class="p">:</span> <span class="s2">&quot;010051c10d676574546f74616c4d6f6e6579677b1363536065a16bb208e9c9df9344d5fd0cfad8&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;HALT, BREAK&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;gas_consumed&quot;</span><span class="p">:</span> <span class="s2">&quot;0.722&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;stack&quot;</span><span class="p">:</span> <span class="p">[{</span>
+                     <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ByteArray&quot;</span><span class="p">,</span>
+                     <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;0484d717&quot;</span>
+             <span class="p">}]</span>
+     <span class="p">}]</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+<p>结果解析路径</p>
+<p>例：【totalMoney=result[‘stack’][0][‘value’]】 转Biginteger</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">內容目录</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">NNC 开发者手册</a><ul>
+<li><a class="reference internal" href="#id1">获取nnc发行总量</a></li>
+<li><a class="reference internal" href="#id2">获取NNC合约名</a></li>
+<li><a class="reference internal" href="#id3">获取NNC的符号</a></li>
+<li><a class="reference internal" href="#id4">获取NNC精度</a></li>
+<li><a class="reference internal" href="#id5">初始化nnc</a></li>
+<li><a class="reference internal" href="#id6">获取账户余额</a></li>
+<li><a class="reference internal" href="#id7">普通账户转账</a></li>
+<li><a class="reference internal" href="#id8">合约调用NNC转账</a></li>
+<li><a class="reference internal" href="#id9">领取分红</a></li>
+<li><a class="reference internal" href="#id10">查询可以领取的分红数</a></li>
+<li><a class="reference internal" href="#id11">查询系统费收入</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>上一个主题</h4>
+  <p class="topless"><a href="nns_dev_guide.html"
+                        title="上一章">NNS开发者手册</a></p>
+  <h4>下一个主题</h4>
+  <p class="topless"><a href="nns_dev_guide_nns.html"
+                        title="下一章">&lt;no title&gt;</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/nns_dev_guide_nnc.rst.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="转向" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="right" >
+          <a href="nns_dev_guide_nns.html" title="&lt;no title&gt;"
+             >下一页</a> |</li>
+        <li class="right" >
+          <a href="nns_dev_guide.html" title="NNS开发者手册"
+             >上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">NNS  文档</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="nns_dev_guide.html" >NNS开发者手册</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版权所有 2018, NEL.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6 创建。
+    </div>
+  </body>
+</html>

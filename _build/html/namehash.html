@@ -1,0 +1,170 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Namehash 算法 &#8212; NNS  文档</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">NNS  文档</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="namehash">
+<h1>Namehash 算法<a class="headerlink" href="#namehash" title="永久链接至标题">¶</a></h1>
+<p>NNS中存储的域名为32字节散列值，而不是域名原文的文本。这有几个设计原因：</p>
+<blockquote>
+<div><ul class="simple">
+<li>处理过程统一，允许任意长度的域名。</li>
+<li>一定程度保留了域名的隐私</li>
+<li>将域名转换为散列的算法称为NameHash</li>
+</ul>
+</div></blockquote>
+<div class="section" id="id1">
+<h2>域名协议<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>通常我们在互联网上使用的url如下</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">aaa</span><span class="o">.</span><span class="n">bbb</span><span class="o">.</span><span class="n">test</span><span class="o">/</span><span class="n">xxx</span>
+</pre></div>
+</div>
+<p>其中：</p>
+<ol class="arabic simple">
+<li>http是协议(protocol)，NNS服务请求时会把域名和协议分开传递</li>
+<li>aaa.bbb.test是域名，NNS服务请求时使用域名的hash</li>
+<li>xxx是路径，路径不是在dns的层次处理，对于nns也一样，如果有路径，交由其他的方式处理</li>
+</ol>
+<p>NNS服务使用的不是域名，而是域名的名字数组，这样处理起来更加直接</p>
+<p>域名 aaa.bb.test 转成字节数组就是[“test”,”bb”,”aa”]</p>
+<p>你可以这样调用解析</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NNS</span><span class="o">.</span><span class="n">ResolveFull</span><span class="p">(</span><span class="s2">&quot;http&quot;</span><span class="p">,[</span><span class="s2">&quot;test&quot;</span><span class="p">,</span><span class="s2">&quot;bb&quot;</span><span class="p">,</span><span class="s2">&quot;aa&quot;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>交由合约去计算出namehash ## NameHash算法
+NameHash算法是将域名转成DomainArray以后，逐级连接计算hash的方法，代码如下:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">域名转hash算法</span>
+<span class="n">static</span> <span class="n">byte</span><span class="p">[]</span> <span class="n">nameHash</span><span class="p">(</span><span class="n">string</span> <span class="n">domain</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">SmartContract</span><span class="o">.</span><span class="n">Sha256</span><span class="p">(</span><span class="n">domain</span><span class="o">.</span><span class="n">AsByteArray</span><span class="p">());</span>
+<span class="p">}</span>
+<span class="n">static</span> <span class="n">byte</span><span class="p">[]</span> <span class="n">nameHashSub</span><span class="p">(</span><span class="n">byte</span><span class="p">[]</span> <span class="n">roothash</span><span class="p">,</span> <span class="n">string</span> <span class="n">subdomain</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">var</span> <span class="n">domain</span> <span class="o">=</span> <span class="n">SmartContract</span><span class="o">.</span><span class="n">Sha256</span><span class="p">(</span><span class="n">subdomain</span><span class="o">.</span><span class="n">AsByteArray</span><span class="p">())</span><span class="o">.</span><span class="n">Concat</span><span class="p">(</span><span class="n">roothash</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">SmartContract</span><span class="o">.</span><span class="n">Sha256</span><span class="p">(</span><span class="n">domain</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">static</span> <span class="n">byte</span><span class="p">[]</span> <span class="n">nameHashArray</span><span class="p">(</span><span class="n">string</span><span class="p">[]</span> <span class="n">domainarray</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">byte</span><span class="p">[]</span> <span class="nb">hash</span> <span class="o">=</span> <span class="n">nameHash</span><span class="p">(</span><span class="n">domainarray</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">domainarray</span><span class="o">.</span><span class="n">Length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nb">hash</span> <span class="o">=</span> <span class="n">nameHashSub</span><span class="p">(</span><span class="nb">hash</span><span class="p">,</span> <span class="n">domainarray</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">hash</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>快速解析<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>完整的解析传入整个DomainArray,由智能合约去逐个检查一层层解析。
+计算NameHash的过程也可以挪到客户端算好，再传入智能合约。 调用方式如下</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">查询</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">aaa</span><span class="o">.</span><span class="n">bbb</span><span class="o">.</span><span class="n">test</span>
+<span class="n">var</span> <span class="nb">hash</span> <span class="o">=</span> <span class="n">nameHashArray</span><span class="p">([</span><span class="s2">&quot;test&quot;</span><span class="p">,</span><span class="s2">&quot;bbb&quot;</span><span class="p">]);</span><span class="o">//</span><span class="n">可以客户端计算</span>
+<span class="n">NNS</span><span class="o">.</span><span class="n">Resolve</span><span class="p">(</span><span class="s2">&quot;http&quot;</span><span class="p">,</span><span class="nb">hash</span><span class="p">,</span><span class="s2">&quot;aaa&quot;</span><span class="p">);</span><span class="o">//</span><span class="n">调用智能合约</span>
+</pre></div>
+</div>
+<p>或者</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">查询</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">bbb</span><span class="o">.</span><span class="n">test</span>
+<span class="n">var</span> <span class="nb">hash</span> <span class="o">=</span> <span class="n">nameHashArray</span><span class="p">([</span><span class="s2">&quot;test&quot;</span><span class="p">,</span><span class="s2">&quot;bbb&quot;</span><span class="p">]);</span><span class="o">//</span><span class="n">可以客户端计算</span>
+<span class="n">NNS</span><span class="o">.</span><span class="n">Resolve</span><span class="p">(</span><span class="s2">&quot;http&quot;</span><span class="p">,</span><span class="nb">hash</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">);</span><span class="o">//</span><span class="n">调用智能合约</span>
+</pre></div>
+</div>
+<p>你也许会考虑查询 aaa.bbb.test 的过程为什么不是这样</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">查询</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">aaa</span><span class="o">.</span><span class="n">bbb</span><span class="o">.</span><span class="n">test</span>
+<span class="n">var</span> <span class="nb">hash</span> <span class="o">=</span> <span class="n">nameHashArray</span><span class="p">([</span><span class="s2">&quot;test&quot;</span><span class="p">,</span><span class="s2">&quot;bbb&quot;</span><span class="p">,</span><span class="s2">&quot;aaa&quot;</span><span class="p">]);</span><span class="o">//</span><span class="n">可以客户端计算</span>
+<span class="n">NNS</span><span class="o">.</span><span class="n">Resolve</span><span class="p">(</span><span class="s2">&quot;http&quot;</span><span class="p">,</span><span class="nb">hash</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">);</span><span class="o">//</span><span class="n">调用智能合约</span>
+</pre></div>
+</div>
+<p>我们要考虑aaa.bb.test
+是否拥有一个独立的解析器，如果aaa.bb.test被卖给了别人，他指定了一个独立的解析器，这样是可以查询到的。
+如果aaa.bb.test 并没有独立的解析器，他是有bb.test的解析器来解析。
+那么这样就无法查询到</p>
+<p>而采用第一种查询方式，无论aaa.bb.test
+是否拥有一个独立的解析器，都可以查询到。</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">內容目录</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Namehash 算法</a><ul>
+<li><a class="reference internal" href="#id1">域名协议</a></li>
+<li><a class="reference internal" href="#id2">快速解析</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/namehash.rst.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="转向" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">NNS  文档</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版权所有 2018, NEL.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6 创建。
+    </div>
+  </body>
+</html>

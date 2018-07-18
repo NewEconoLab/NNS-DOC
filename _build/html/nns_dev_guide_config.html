@@ -1,0 +1,175 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>接口标准 &#8212; NNS  文档</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="参考文献" href="nns_reference.html" />
+    <link rel="prev" title="SGAS合约手册" href="nns_dev_guide_sgas.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="nns_reference.html" title="参考文献"
+             accesskey="N">下一页</a> |</li>
+        <li class="right" >
+          <a href="nns_dev_guide_sgas.html" title="SGAS合约手册"
+             accesskey="P">上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">NNS  文档</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="nns_dev_guide.html" accesskey="U">NNS开发者手册</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1>接口标准<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id2">
+<h2>变量类型<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<ol class="arabic simple">
+<li>域名拍卖id       hex256</li>
+<li>用户地址     hex160</li>
+<li>域名哈希     hex256</li>
+<li>合约地址     hex160</li>
+<li>用户资产额度 BigIngeger</li>
+</ol>
+</div>
+<div class="section" id="id3">
+<h2>变量/参数定义<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id4">
+<h3>常量<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<ol class="arabic simple">
+<li>SGAS 合约：     DAPP_SGAS     =&gt; hex160</li>
+<li>NNC合约：       DAPP_NNC      =&gt; hex160</li>
+<li>竞拍注册器：     DAPP_REG     =&gt;  hex160</li>
+<li>先到先得注册器： DAPP_REG_FIFO =&gt; hex160</li>
+</ol>
+</div>
+<div class="section" id="id5">
+<h3>转账<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<ol class="arabic simple">
+<li>转账源地址：    who     =&gt; hex160</li>
+<li>转账目的地址：  target  =&gt; hex160</li>
+<li>转账金额：      amount  =&gt; BigIngeger</li>
+</ol>
+</div>
+<div class="section" id="id6">
+<h3>域名拍卖<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<ol class="arabic simple">
+<li>拍卖id ：bid_id =&gt;hex256</li>
+<li>域名哈希：domain_hash =&gt; hex256</li>
+<li>根域名哈希：root_hash =&gt;hex256</li>
+<li>子域名：sub_domain =&gt;string</li>
+<li>域名完全哈希：full_hash=&gt;hex256</li>
+</ol>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>数据结构<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<p>NNS合约的对外统一接口有两个参数，一个是用于接收具体命令的，另一个是接收Object类型的参数列表的，所有合约的接口定义都如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">public</span> <span class="n">static</span> <span class="nb">object</span> <span class="n">Main</span><span class="p">(</span><span class="n">string</span> <span class="n">method</span><span class="p">,</span> <span class="nb">object</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>因此调用NNS合约的数据结构可描述为：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>{
+    appCall：合约地址
+    method：合约方法
+    params：参数列表
+}
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">內容目录</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">接口标准</a><ul>
+<li><a class="reference internal" href="#id2">变量类型</a></li>
+<li><a class="reference internal" href="#id3">变量/参数定义</a><ul>
+<li><a class="reference internal" href="#id4">常量</a></li>
+<li><a class="reference internal" href="#id5">转账</a></li>
+<li><a class="reference internal" href="#id6">域名拍卖</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id7">数据结构</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>上一个主题</h4>
+  <p class="topless"><a href="nns_dev_guide_sgas.html"
+                        title="上一章">SGAS合约手册</a></p>
+  <h4>下一个主题</h4>
+  <p class="topless"><a href="nns_reference.html"
+                        title="下一章">参考文献</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/nns_dev_guide_config.rst.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="转向" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="right" >
+          <a href="nns_reference.html" title="参考文献"
+             >下一页</a> |</li>
+        <li class="right" >
+          <a href="nns_dev_guide_sgas.html" title="SGAS合约手册"
+             >上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">NNS  文档</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="nns_dev_guide.html" >NNS开发者手册</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版权所有 2018, NEL.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6 创建。
+    </div>
+  </body>
+</html>

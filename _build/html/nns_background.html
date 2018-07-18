@@ -1,0 +1,147 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>NNS 背景介绍 &#8212; NNS  文档</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="NNS 系统设计概述" href="nns_system.html" />
+    <link rel="prev" title="Welcome to NNS’s documentation!" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="nns_system.html" title="NNS 系统设计概述"
+             accesskey="N">下一页</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to NNS’s documentation!"
+             accesskey="P">上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">NNS  文档</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="nns">
+<h1>NNS 背景介绍<a class="headerlink" href="#nns" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>NNS 是什么<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>NNS（NEO Name Service）是Neo的域名服务，是一个基于Neo区块链的分布式、开源和可扩展的域名系统。
+旨在将钱包地址、智能合约Hash等人类难以记忆的无规则的字符串用单词短语简写等代替。我们首先提供以“.neo”结尾的域名服务。</p>
+<p>通过域名服务，人们再也不用记忆看不懂的地址和Hash，只要知道一个单词或一个短语就能进行转账、使用合约。</p>
+<p>NNS可以将域名解析到各种目标。最容易联想到的是Neo的地址（Address），或者智能合约（ScriptHash）。
+我们预留了足够的扩展性，可以在NNS不升级的情况下支持更多的解析目标种类。</p>
+</div>
+<div class="section" id="id2">
+<h2>为什么需要 NNS<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>中本聪在设计比特币地址的时候，没有采用程序界常用的base64编码，而是自创了base58编码，去除了几个看起来会产生歧义的字符，
+如 0 (零), O (大写字母O), I (大写的字母i) and l (小写的字母L) ，这体现了中本聪对区块链地址易用性的考虑。</p>
+<p>然而，区块链地址对于人类还是不够友好，太长，不方便记忆，不容易比较对错。未来随着区块链越来越普及，地址转账的缺点会越来越明显，
+就像我们今天发邮件很难用一个32位字符串作为一个邮箱账号一样。因此一个别名服务对于区块链系统的易用性有非常大的帮助，
+例如IPFS上有别名服务IPNS，以太坊上有自己的域名服务ENS，我们认为NEO系统也应该有自己的别名服务，我们称为NEO Name Service(NNS)，
+NEL社区将实现NNS服务以提升NEO区块链易用性。</p>
+</div>
+<div class="section" id="id3">
+<h2>NNS 的使用场景<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>别名服务的最主要使用场景在于别名转账，尤其是那些需要公开自己转账地址并且不常更换地址的账户，例如在ICO时，
+项目方需要在官网提前公开自己官方账户地址，但是有可能被黑客修改了地址，然而投资人很难发现，如果项目方提前公布一个简短易记的地址别名，
+别名被修改会很容易被发现，因此可以避免转账地址被黑客修改事件。</p>
+<p>一个别名要指向什么样的资源，是可以灵活扩展的，只需要实现相应的解析器即可，除了可以指向一个账户地址，也可以指向一个合约地址，从而实现通过别名和智能合约交互。</p>
+<p>区块链作为下一代互联网的基础设施，未来会有越来越多的服务基于区块链构建，例如去中心化云存储服务，而文件寻址是通过文件哈希值唯一标识实现的，
+我们可以为哈希值取一个容易理解别名例如文件名，然后将别名映射到文件哈希，从而实现文件寻址，因此别名服务未来可以和NEO上的去中心化文件存储NEOFS结合使用。
+未来，随着构建在NEO上服务越来越多，NNS还可以为去中心化消息通信、邮件服务等提供别名服务。</p>
+</div>
+<div class="section" id="nns-ens">
+<h2>NNS 和 ENS 的关系<a class="headerlink" href="#nns-ens" title="永久链接至标题">¶</a></h2>
+<p>NNS和ENS具有相同的目标，都是为了提升区块链的易用性，但是基于不同的区块链平台实现，服务于不同的区块链平台。NNS在做系统设计时参考借鉴了ENS的设计，
+在此对他们表示感谢，同时我们也在ENS基础上做很多创新设计，例如将所有者合约从注册器模块中拆分出来以实现更灵活的所有权控制，在解析方式上，
+分为了快速解析和完整解析两种方式，在经济模型上引入了一种新型的智能代币，以实现系统费用的重新分配。</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">內容目录</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">NNS 背景介绍</a><ul>
+<li><a class="reference internal" href="#id1">NNS 是什么</a></li>
+<li><a class="reference internal" href="#id2">为什么需要 NNS</a></li>
+<li><a class="reference internal" href="#id3">NNS 的使用场景</a></li>
+<li><a class="reference internal" href="#nns-ens">NNS 和 ENS 的关系</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>上一个主题</h4>
+  <p class="topless"><a href="index.html"
+                        title="上一章">Welcome to NNS’s documentation!</a></p>
+  <h4>下一个主题</h4>
+  <p class="topless"><a href="nns_system.html"
+                        title="下一章">NNS 系统设计概述</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/nns_background.rst.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="转向" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="right" >
+          <a href="nns_system.html" title="NNS 系统设计概述"
+             >下一页</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to NNS’s documentation!"
+             >上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">NNS  文档</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版权所有 2018, NEL.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6 创建。
+    </div>
+  </body>
+</html>

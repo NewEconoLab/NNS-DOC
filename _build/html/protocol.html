@@ -1,0 +1,123 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>NNS 协议 &#8212; NNS  文档</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">NNS  文档</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="nns">
+<h1>NNS 协议<a class="headerlink" href="#nns" title="永久链接至标题">¶</a></h1>
+<p>通常我们在互联网上使用的url如下</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">aaa</span><span class="o">.</span><span class="n">bbb</span><span class="o">.</span><span class="n">test</span><span class="o">/</span><span class="n">xxx</span>
+</pre></div>
+</div>
+<p>其中：</p>
+<blockquote>
+<div><ul class="simple">
+<li>http是协议(protocol)，NNS服务请求时会把域名和协议分开传递</li>
+<li>aaa.bbb.test是域名，NNS服务请求时使用域名的hash</li>
+<li>xxx是路径，路径不是在dns的层次处理，对于nns也一样，如果有路径，交由其他的方式处理</li>
+</ul>
+</div></blockquote>
+<p>NNS的协议使用字符串定义</p>
+<p>以下均为暂定</p>
+<div class="section" id="http">
+<h2>http协议<a class="headerlink" href="#http" title="永久链接至标题">¶</a></h2>
+<p><strong>http</strong> 协议指向一个string,表示一个互联网地址</p>
+</div>
+<div class="section" id="addr">
+<h2>addr协议<a class="headerlink" href="#addr" title="永久链接至标题">¶</a></h2>
+<p><strong>addr</strong> 协议指向一个string，表示一个NEO address，形如 AdzQq1DmnHq86yyDUkU3jKdHwLUe2MLAVv</p>
+</div>
+<div class="section" id="script">
+<h2>script协议<a class="headerlink" href="#script" title="永久链接至标题">¶</a></h2>
+<p><strong>script</strong> 协议指向一个byte[],表示一个NEO ScriptHash，形如0xf3b1c99910babe5c23d0b4fd0104ee84ffeec2a5</p>
+<p>同一域名的不同协议做不同处理</p>
+<p><strong>http://abc.test</strong> 可以指向 <a class="reference external" href="http://www.163.com">http://www.163.com</a></p>
+<p><strong>addr://abc.test</strong> 可以指向 AdzQq1DmnHq86yyDUkU3jKdHwLUe2MLAVv</p>
+<p><strong>script://abc.test</strong> 可以指向 0xf3b1c99910babe5c23d0b4fd0104ee84ffeec2a5</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">內容目录</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">NNS 协议</a><ul>
+<li><a class="reference internal" href="#http">http协议</a></li>
+<li><a class="reference internal" href="#addr">addr协议</a></li>
+<li><a class="reference internal" href="#script">script协议</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/protocol.rst.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="转向" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">NNS  文档</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版权所有 2018, NEL.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6 创建。
+    </div>
+  </body>
+</html>

@@ -1,0 +1,235 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Neo域名服务(Neo Name Service) &#8212; NNS  文档</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">NNS  文档</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="neo-neo-name-service">
+<h1>Neo域名服务(Neo Name Service)<a class="headerlink" href="#neo-neo-name-service" title="永久链接至标题">¶</a></h1>
+<p>NNS是Neo的域名服务，是一个基于Neo区块链的分布式、开源和可扩展的域名系统。
+旨在将钱包地址、智能合约Hash等人类难以记忆的无规则的字符串用单词短语简写等代替。</p>
+<p>通过域名服务，人们再也不用记忆看不懂的地址和Hash，只要知道一个单词或一个短语就能进行转账、使用合约。</p>
+<p>NNS可以将域名解析到各种目标。最容易联想到的是Neo的地址（Address），或者智能合约（ScriptHash）。
+预留了足够的扩展性，可以在NNS不升级的情况下支持更多的解析目标种类。</p>
+<div class="section" id="id1">
+<h2>基本概念<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id2">
+<h3>域名<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">以url</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">test为例</span>
+</pre></div>
+</div>
+<p>http 是协议,www abc test 为域名，test是根域名或者顶级域名,
+abc称为二级域名,www称为三级域名，不限制域名的级数，但是通常以二级域名和三级域名最为常用</p>
+</div>
+<div class="section" id="id3">
+<h3>协议<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<p>以url</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">test</span>
+<span class="n">addr</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">test</span>
+<span class="n">script</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">test</span>
+</pre></div>
+</div>
+<p>为例</p>
+<p>http addr script 为协议，根据不同的协议解析器返回不同的解析数据。</p>
+<p>NNS系统已经约定了一些协议，详见<a class="reference external" href="protocol.html">NNS协议规范</a></p>
+</div>
+<div class="section" id="id4">
+<h3>顶级域名<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">以url</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">test</span> <span class="n">为例</span>
+</pre></div>
+</div>
+<p>test就是顶级域名，顶级域名不可直接访问，<a class="reference external" href="http://test">http://test</a> 无效。</p>
+<p>顶级域名又称为根域名。</p>
+<p>用户通过顶级域名对应的智能合约，进行各种操作。</p>
+</div>
+<div class="section" id="id5">
+<h3>子域名<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<p>顶级域名不是任何人的子域名，二级域名是顶级域名的子域名，三级域名是二级域名的子域名，以此类推。
+在我们的系统里，用户可以取得的最高层级是二级域名，二级域名的注册器可以将二级域名所属的三级域名分配给其他人。</p>
+</div>
+<div class="section" id="namehash">
+<h3>Namehash<a class="headerlink" href="#namehash" title="永久链接至标题">¶</a></h3>
+<p>NNS中存储的域名为32字节散列值，而不是域名原文的文本。
+关于具体算法，详见<a class="reference external" href="namehash.html">NNS Namehash算法详解</a></p>
+</div>
+<div class="section" id="id6">
+<h3>所有者<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<p>根域名的所有者和注册器都由管理员控制。</p>
+<p>除顶级域名外，每一层域名的所有者可以是账户地址或者智能合约。
+比如：二级域名的所有者可以设置自己的二级域名使用的注册器与解析器。
+二级域名所属的三级域名的所有权，需要通过二级域名的注册器分配。</p>
+<p>所有者不能直接分配三级域名的所有权。这需要取决于所有者设置的注册器的行为。</p>
+<p>所有者代表一级域名的所有权。</p>
+<p>当所有者是一个智能合约时，可以实现复杂的所有权控制，比如双人签名，多人投票等机制</p>
+</div>
+<div class="section" id="id7">
+<h3>注册器<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<p>注册器负责分配一个域名的子域名。
+比如test顶级域名的注册器是一个先到先得注册器，任何人可以向该注册器所要未分配的与过期的二级域名。
+neo顶级域名的注册器会是采用拍卖的系统进行分配。</p>
+<p>注册器代表对子域名的分配策略。</p>
+<p>如果二级域名的所有者设置了一个有所有者手工配置的注册器，那么二级域名所属子域名的分配权全部有所有者手工配置。</p>
+<p>如果二级域名的所有者设置了一个先到先得注册器或者拍卖注册器，那么等同于放弃了二级域名所属子域名的控制权，让大家自由申请子域名。</p>
+</div>
+<div class="section" id="id8">
+<h3>解析器<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<p>解析器负责解析域名</p>
+</div>
+<div class="section" id="id9">
+<h3>有效期<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<p>除顶级域名外，每一个二级域名都有有效期，注册器在分配域名时指定，注册器分配的最大有效期不得超过注册器自己所在域名的有效期。</p>
+<p>过期域名可以被再次分配，要维持所有权，可以在未到期前通过注册器重置有效期。</p>
+</div>
+</div>
+<div class="section" id="id10">
+<h2>系统组成<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id11">
+<h3>智能合约<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
+<p>以顶级域名合约作为入口，辅以各种合约共同构成NNS的智能合约体系。</p>
+<p>所有者合约(用户可定制)</p>
+<p>注册器合约(用户可定制)</p>
+<p>解析器合约(用户可定制)</p>
+<p>详情见<a class="reference external" href="system.html">NNS系统概述</a></p>
+</div>
+<div class="section" id="id12">
+<h3>经济系统<a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h3>
+<p>NNS
+将发行一种称为NNC的代币，用作建设NNS的经济系统，可以用来拍卖域名，支付域名租金等</p>
+<p>详情见<a class="reference external" href="nnc.html">NNS经济系统-NNC代币</a></p>
+<p>NNS的域名将采用拍卖机制流转</p>
+<p>详情见<a class="reference external" href="auction.html">NNS经济系统-拍卖</a></p>
+</div>
+<div class="section" id="id13">
+<h3>域名浏览器<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h3>
+<p>NNS域名浏览器是提供NNS域名查询，拍卖，转让等功能的入口。</p>
+</div>
+<div class="section" id="id14">
+<h3>反向解析<a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h3>
+<p>NNS将支持反向解析，反向解析将称为验证地址、验证智能合约的一个有效手段。</p>
+</div>
+<div class="section" id="id15">
+<h3>第三方合作<a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h3>
+<p>NNS会和各种第三方交易所、钱包进行对接。 推广他们使用NNS的服务。</p>
+<p>NNS所有的协议的公开的，任何人都可以自由使用NNS的服务。从中获取域名所带来的便利。</p>
+</div>
+</div>
+<div class="section" id="id16">
+<h2>技术路线图<a class="headerlink" href="#id16" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li></li>
+<li>2017.12 完成技术原理测试和验证</li>
+<li>2018.1.31
+在测试网发布包括注册器、解析器的NNS第一阶段测试服务，任何人可以注册未被注册且符合规则的域名</li>
+<li>xxxx.xx.xx 发布基于测试网的域名浏览器V1</li>
+<li>xxxx.xx.xx 在测试网发行NNC</li>
+<li>xxxx.xx.xx
+在测试网发布包含竞标服务的NNS第二阶段测试服务，任何人可以向NEL申请NNC进行竞标测试域名</li>
+<li></li>
+<li>xxxx.xx.xx 在正式网发行NNC</li>
+<li>xxxx.xx.xx 在正式网上发布NNS正式服务，Neo域名时代来临</li>
+<li>xxxx.xx.xx 发布基于正式网的域名浏览器</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">內容目录</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Neo域名服务(Neo Name Service)</a><ul>
+<li><a class="reference internal" href="#id1">基本概念</a><ul>
+<li><a class="reference internal" href="#id2">域名</a></li>
+<li><a class="reference internal" href="#id3">协议</a></li>
+<li><a class="reference internal" href="#id4">顶级域名</a></li>
+<li><a class="reference internal" href="#id5">子域名</a></li>
+<li><a class="reference internal" href="#namehash">Namehash</a></li>
+<li><a class="reference internal" href="#id6">所有者</a></li>
+<li><a class="reference internal" href="#id7">注册器</a></li>
+<li><a class="reference internal" href="#id8">解析器</a></li>
+<li><a class="reference internal" href="#id9">有效期</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id10">系统组成</a><ul>
+<li><a class="reference internal" href="#id11">智能合约</a></li>
+<li><a class="reference internal" href="#id12">经济系统</a></li>
+<li><a class="reference internal" href="#id13">域名浏览器</a></li>
+<li><a class="reference internal" href="#id14">反向解析</a></li>
+<li><a class="reference internal" href="#id15">第三方合作</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id16">技术路线图</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/README.rst.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="转向" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">NNS  文档</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版权所有 2018, NEL.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6 创建。
+    </div>
+  </body>
+</html>

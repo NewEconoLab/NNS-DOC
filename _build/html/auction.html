@@ -1,0 +1,126 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>竞标服务 &#8212; NNS  文档</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">NNS  文档</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1>竞标服务<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>竞标服务以确定谁有权注册某一个二级域名为服务目标。服务进程分为四个阶段（以1月1日开标为例）:</p>
+<div class="figure" id="id7">
+<img alt="image" src="_images/gantt.png" />
+<p class="caption"><span class="caption-text">image</span></p>
+</div>
+<div class="section" id="id2">
+<h2>开标<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>任意未被注册或已过期且不违反域定义的域名都可被任意标准地址（账户）申请开标。一旦开标即意味着该域名的所有权投标开始。</p>
+</div>
+<div class="section" id="id3">
+<h2>投标<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>投标由开标启动，为期7天，在这段时间内任意标准地址（账户）可以提交一个加密的报价，此过程并不需要为此支付任何保证金。
+投标人通过发送报价附加其自定义的一组8位任意字符的32位sha256散列值作为报价用以隐藏真实报价，以防止没有必要的恶性竞争。
+投标人不足1人，竞标自动结束，域名立即进入可开标状态。</p>
+</div>
+<div class="section" id="id4">
+<h2>揭标<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>投标过程结束后进入48小时的揭标过程。在此期间，投标人需要提交报价的明文和加密字符串明文，用以验证揭标人没有更改投标报价。
+在此过程中，投标人需提交与报价等额的保证金。在此过程中，如果投标人没有揭标，视为放弃竞标。揭标人不足1人，竞标自动结束，域名立即进入可开标状态。</p>
+</div>
+<div class="section" id="id5">
+<h2>中标<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>揭标结束后，进入中标过程。确定出价最高的前三揭标人，确认为第一、第二、第三中标人，每个中标人有48小时中标权。</p>
+<p>中标权首先赋予第一中标人，第一中标人48小时内未领取域名所有权，则中标权赋予第二中标人，以此类推。
+如果所有中标人均没有在48小时内领取域名所有权，竞标流标，相关域名立即进入可开标状态。</p>
+<p>中标人支付报价后，即获得该二级域名356天的所有权。中标人行驶中标权，则保证金自动支付竞标报价；中标人放弃中标权，则保证金将自动退回。</p>
+</div>
+<div class="section" id="id6">
+<h2>交易服务<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p> 交易服务支持域名登记员发布域名所有权转让邀约，对域名有获取需求的人可以进行竞标，其过程类似于竞标服务。</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">內容目录</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">竞标服务</a><ul>
+<li><a class="reference internal" href="#id2">开标</a></li>
+<li><a class="reference internal" href="#id3">投标</a></li>
+<li><a class="reference internal" href="#id4">揭标</a></li>
+<li><a class="reference internal" href="#id5">中标</a></li>
+<li><a class="reference internal" href="#id6">交易服务</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/auction.rst.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="转向" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">NNS  文档</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版权所有 2018, NEL.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6 创建。
+    </div>
+  </body>
+</html>
