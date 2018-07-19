@@ -207,7 +207,7 @@ NameHash算法是将域名转成DomainArray以后，逐级连接计算hash的方
 
 ::
     
-    getInfo(byte[] namehash)
+    getOwnerInfo(byte[] namehash)
 
 返回一个域名的信息 返回值为一个如下数组
 
@@ -369,7 +369,7 @@ xxx)的形式。 xxx 均是scripthash。
 
 ::
 
-    owner\_SetResolve(byte[] srcowner,byte[] nnshash,byte[] newresolver)
+    owner_SetResolve(byte[] srcowner,byte[] nnshash,byte[] newresolver)
 
 设置域名解析器合约（域名解析器为一个智能合约）
 
@@ -400,7 +400,7 @@ xxx)的形式。 xxx 均是scripthash。
 
 ::
 
-    register\_SetSubdomainOwner(byte[] nnshash,string subdomain,byte[] newowner,BigInteger ttl)
+    register_SetSubdomainOwner(byte[] nnshash,string subdomain,byte[] newowner,BigInteger ttl)
 
 注册一个子域名
 

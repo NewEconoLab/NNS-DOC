@@ -209,7 +209,7 @@ NameHash算法是将域名转成DomainArray以后，逐级连接计算hash的方
 </div>
 <div class="section" id="id9">
 <h4>域名信息<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h4>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">getInfo</span><span class="p">(</span><span class="n">byte</span><span class="p">[]</span> <span class="n">namehash</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">getOwnerInfo</span><span class="p">(</span><span class="n">byte</span><span class="p">[]</span> <span class="n">namehash</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>返回一个域名的信息 返回值为一个如下数组</p>
@@ -337,7 +337,7 @@ xxx)的形式。 xxx 均是scripthash。</p>
 </div>
 <div class="section" id="id18">
 <h4>域名解析<a class="headerlink" href="#id18" title="永久链接至标题">¶</a></h4>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">owner</span>\<span class="n">_SetResolve</span><span class="p">(</span><span class="n">byte</span><span class="p">[]</span> <span class="n">srcowner</span><span class="p">,</span><span class="n">byte</span><span class="p">[]</span> <span class="n">nnshash</span><span class="p">,</span><span class="n">byte</span><span class="p">[]</span> <span class="n">newresolver</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">owner_SetResolve</span><span class="p">(</span><span class="n">byte</span><span class="p">[]</span> <span class="n">srcowner</span><span class="p">,</span><span class="n">byte</span><span class="p">[]</span> <span class="n">nnshash</span><span class="p">,</span><span class="n">byte</span><span class="p">[]</span> <span class="n">newresolver</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>设置域名解析器合约（域名解析器为一个智能合约）</p>
@@ -360,7 +360,7 @@ xxx)的形式。 xxx 均是scripthash。</p>
 <div class="section" id="id19">
 <h3>注册器接口<a class="headerlink" href="#id19" title="永久链接至标题">¶</a></h3>
 <p>注册器接口由注册器智能合约进行调用，只有一个</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">register</span>\<span class="n">_SetSubdomainOwner</span><span class="p">(</span><span class="n">byte</span><span class="p">[]</span> <span class="n">nnshash</span><span class="p">,</span><span class="n">string</span> <span class="n">subdomain</span><span class="p">,</span><span class="n">byte</span><span class="p">[]</span> <span class="n">newowner</span><span class="p">,</span><span class="n">BigInteger</span> <span class="n">ttl</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">register_SetSubdomainOwner</span><span class="p">(</span><span class="n">byte</span><span class="p">[]</span> <span class="n">nnshash</span><span class="p">,</span><span class="n">string</span> <span class="n">subdomain</span><span class="p">,</span><span class="n">byte</span><span class="p">[]</span> <span class="n">newowner</span><span class="p">,</span><span class="n">BigInteger</span> <span class="n">ttl</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>注册一个子域名</p>

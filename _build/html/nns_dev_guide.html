@@ -17,7 +17,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="搜索" href="search.html" />
-    <link rel="next" title="NNC 开发者手册" href="nns_dev_guide_nnc.html" />
+    <link rel="next" title="&lt;no title&gt;" href="nns_dev_guide_nns.html" />
     <link rel="prev" title="总结" href="nns_summary.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -27,7 +27,7 @@
           <a href="genindex.html" title="总目录"
              accesskey="I">索引</a></li>
         <li class="right" >
-          <a href="nns_dev_guide_nnc.html" title="NNC 开发者手册"
+          <a href="nns_dev_guide_nns.html" title="&lt;no title&gt;"
              accesskey="N">下一页</a> |</li>
         <li class="right" >
           <a href="nns_summary.html" title="总结"
@@ -45,20 +45,6 @@
 <h1>NNS开发者手册<a class="headerlink" href="#nns" title="永久链接至标题">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="nns_dev_guide_nnc.html">NNC 开发者手册</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="nns_dev_guide_nnc.html#id1">获取nnc发行总量</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nns_dev_guide_nnc.html#id2">获取NNC合约名</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nns_dev_guide_nnc.html#id3">获取NNC的符号</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nns_dev_guide_nnc.html#id4">获取NNC精度</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nns_dev_guide_nnc.html#id5">初始化nnc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nns_dev_guide_nnc.html#id6">获取账户余额</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nns_dev_guide_nnc.html#id7">普通账户转账</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nns_dev_guide_nnc.html#id8">合约调用NNC转账</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nns_dev_guide_nnc.html#id9">领取分红</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nns_dev_guide_nnc.html#id10">查询可以领取的分红数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nns_dev_guide_nnc.html#id11">查询系统费收入</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="nns_dev_guide_sgas.html">SGAS合约手册</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="nns_dev_guide_sgas.html#id1">兑换SGAS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nns_dev_guide_sgas.html#gas">兑换GAS</a></li>
@@ -80,22 +66,19 @@
 <p>现阶段NNS在测试网已经部署完成，主网部署也即将进行，开发者可以根据本指导手册完成在自己开发的NEO钱包中对NNS的接入。</p>
 <p>测试网NNS系统合约地址:</p>
 <ol class="arabic simple">
-<li>域名中心******************** 0xd30348a37fb57b7a61f6637ecfc0da6b4eb08dd0</li>
-<li>域名中心跳板**************** 0x537758fbe85505801faa7d7d7b75b37686ad7e2d</li>
-<li>标准解析器****************** 0xd7bb680b4318f0823e968a5a067fc8bef35d13a1</li>
-<li>先到先得注册器************** 0x4e02db8842aa400a4abd77e4bdf23c54ba4aa90e</li>
-<li>拍卖注册器****************** 0xd90d82bf64083312b0b7b8dc668d633cf56899ec</li>
-<li>SGAS*********************** 0xc7816d11287c08135f4e5f907af9e39754910ba3</li>
-<li>nnc（包含资金池）************ 0xd8fa0cfdd54493dfc9e908b26ba165605363137b</li>
+<li>域名中心 <strong>****************</strong> 0xd30348a37fb57b7a61f6637ecfc0da6b4eb08dd0</li>
+<li>域名中心跳板 <strong>************</strong> 0x537758fbe85505801faa7d7d7b75b37686ad7e2d</li>
+<li>标准解析器 <strong>**************</strong> 0xd7bb680b4318f0823e968a5a067fc8bef35d13a1</li>
+<li>先到先得注册器 <strong>**********</strong> 0x4e02db8842aa400a4abd77e4bdf23c54ba4aa90e</li>
+<li>拍卖注册器 <strong>**************</strong> 0xd90d82bf64083312b0b7b8dc668d633cf56899ec</li>
+<li>SGAS <strong>*******************</strong> 0xc7816d11287c08135f4e5f907af9e39754910ba3</li>
+<li>nnc <strong>*******************</strong> 0xd8fa0cfdd54493dfc9e908b26ba165605363137b</li>
 </ol>
 <div class="section" id="id1">
 <h2>先到先得注册器<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
 <p>先到先得注册器将只在测试网部署，采取先到先得的形式，用户注册后就可以直接使用，不需要支付手续费。</p>
 <div class="section" id="id2">
-<h3>域名注册<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h3>
-</div>
-<div class="section" id="id3">
-<h3>域名查询解析<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<h3>域名查询解析<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h3>
 <p>我们在测试网中部署的顶级域名为 <strong>test</strong> 顶级域名，在用户注册域名时，需要获取顶级域名的哈希值，然后拼接上用户输入的域名，详情参考 <span class="xref std std-ref">domainhash</span>。
 获取域名注册信息的脚本构造如下：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">sb</span> <span class="o">=</span> <span class="n">new</span> <span class="n">ThinNeo</span><span class="o">.</span><span class="n">ScriptBuilder</span><span class="p">();</span>
@@ -208,8 +191,8 @@ if (stack[ 7 ].type = “Integer”)
 <div class="section" id="id">
 <h3>域名拍卖Id查询<a class="headerlink" href="#id" title="永久链接至标题">¶</a></h3>
 </div>
-<div class="section" id="id4">
-<h3>域名注册<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id3">
+<h3>域名注册<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
 <p>测试网中域名的注册过程相对简单，谁先注册域名谁就拥有这个域名的所有权。测试网注册域名首先需要获取 <em>test</em> 注册器的合约地址：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">sb</span> <span class="o">=</span> <span class="n">new</span> <span class="n">ThinNeo</span><span class="o">.</span><span class="n">ScriptBuilder</span><span class="p">();</span>
 <span class="n">sb</span><span class="o">.</span><span class="n">EmitParamJson</span><span class="p">([</span> <span class="s2">&quot;(bytes)&quot;</span> <span class="o">+</span> <span class="n">domain</span><span class="o">.</span><span class="n">toHexString</span><span class="p">()</span> <span class="p">]);</span><span class="o">//</span><span class="n">第二个参数是个数组</span>
@@ -234,16 +217,16 @@ if (stack[ 7 ].type = “Integer”)
 <p>注意，在构造交易脚本是，参数倒序压栈。由于这个请求需要对用户的身份进行验证，所以本交易需要签名。</p>
 </div>
 </div>
-<div class="section" id="id5">
-<h2>主网<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id4">
+<h2>主网<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
 <p>主网的接入比测试网复杂许多，因为主网除了会引入拍卖机制外还有为了实现代币循环系统而引入的经济模型。</p>
-<div class="section" id="id6">
-<h3>域名查询<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id5">
+<h3>域名查询<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
 <p>主网的域名查询和测试网一样，都是直接向域名管理中心发送查询命令，然后传入需要查询的域名的明文+上一级域名的哈希值，域名中心通过动态向上一级域名请求域名信息来获取域名的注册详情。</p>
 <p>详情参考 <span class="xref std std-ref">domaincheck</span>。</p>
 </div>
-<div class="section" id="id7">
-<h3>域名开拍<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id6">
+<h3>域名开拍<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
 <p>如果用户查询的域名没有被注册或者上一个所有者没有及时续费，那么用户就可以申请开拍该域名，域名开拍合约脚本格式：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">appCall</span><span class="p">:</span><span class="n">DAPP_REG</span>
 <span class="n">method</span><span class="p">:</span><span class="n">wantBuy</span>
@@ -262,7 +245,7 @@ if (stack[ 7 ].type = “Integer”)
 </div>
 </div>
 <div class="section" id="recharge">
-<span id="id8"></span><h3>加价<a class="headerlink" href="#recharge" title="永久链接至标题">¶</a></h3>
+<span id="id7"></span><h3>加价<a class="headerlink" href="#recharge" title="永久链接至标题">¶</a></h3>
 <p>域名在开拍成功之后，域名将会进入一个拍卖周期。在有效的周期时间内，所有想要得到这个域名的人都可以对这个域名进行出价和加价。</p>
 <p>为了防止有人恶意竞拍，有效拍卖时间分为一个固定的拍卖时间和一个不固定的随机时间，域名的拍卖将在随机时间内任何时刻结束。</p>
 <p>用户要对拍卖中的域名出价，首先需要获取该域名的拍卖id。获取域名拍卖id的交易构造如下：</p>
@@ -341,8 +324,8 @@ params:[
 </div>
 <p>在每次加价成功之后，竞拍合约都会重新判断最高出价者，如果多个人都加到最高价，那么先出最高价的为最高出价人。</p>
 </div>
-<div class="section" id="id9">
-<h3>结束竞拍<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id8">
+<h3>结束竞拍<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
 <p>在经过固定竞拍期和随机竞拍期之后，域名拍卖就会结束。拍卖结束之后用户将不能再进行出价。</p>
 <p>参与竞拍的竞拍人可以调用接口结束竞拍，如果是域名的拍得人，可以领取域名所有权，其余的拍卖参与人，可以取回竞拍出价的90%，剩余10%作为拍卖手续费。</p>
 <p>结束竞拍接口如下:</p>
@@ -378,17 +361,16 @@ params:[
   <ul>
 <li><a class="reference internal" href="#">NNS开发者手册</a><ul>
 <li><a class="reference internal" href="#id1">先到先得注册器</a><ul>
-<li><a class="reference internal" href="#id2">域名注册</a></li>
-<li><a class="reference internal" href="#id3">域名查询解析</a></li>
+<li><a class="reference internal" href="#id2">域名查询解析</a></li>
 <li><a class="reference internal" href="#id">域名拍卖Id查询</a></li>
-<li><a class="reference internal" href="#id4">域名注册</a></li>
+<li><a class="reference internal" href="#id3">域名注册</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id5">主网</a><ul>
-<li><a class="reference internal" href="#id6">域名查询</a></li>
-<li><a class="reference internal" href="#id7">域名开拍</a></li>
+<li><a class="reference internal" href="#id4">主网</a><ul>
+<li><a class="reference internal" href="#id5">域名查询</a></li>
+<li><a class="reference internal" href="#id6">域名开拍</a></li>
 <li><a class="reference internal" href="#recharge">加价</a></li>
-<li><a class="reference internal" href="#id9">结束竞拍</a></li>
+<li><a class="reference internal" href="#id8">结束竞拍</a></li>
 </ul>
 </li>
 </ul>
@@ -399,8 +381,8 @@ params:[
   <p class="topless"><a href="nns_summary.html"
                         title="上一章">总结</a></p>
   <h4>下一个主题</h4>
-  <p class="topless"><a href="nns_dev_guide_nnc.html"
-                        title="下一章">NNC 开发者手册</a></p>
+  <p class="topless"><a href="nns_dev_guide_nns.html"
+                        title="下一章">&lt;no title&gt;</a></p>
   <div role="note" aria-label="source link">
     <h3>本页</h3>
     <ul class="this-page-menu">
@@ -431,7 +413,7 @@ params:[
           <a href="genindex.html" title="总目录"
              >索引</a></li>
         <li class="right" >
-          <a href="nns_dev_guide_nnc.html" title="NNC 开发者手册"
+          <a href="nns_dev_guide_nns.html" title="&lt;no title&gt;"
              >下一页</a> |</li>
         <li class="right" >
           <a href="nns_summary.html" title="总结"
