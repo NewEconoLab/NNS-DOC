@@ -13,9 +13,9 @@ Welcome to NNS's documentation!
    nns_background
    nns_system
    nns_protocol
-   nns_summary
    nns_dev_guide
    nns_reference
+   nns_summary
 
 
 
