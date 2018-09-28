@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>SGAS合约手册 &#8212; NNS  文档</title>
+    <title>CGAS合约手册 &#8212; NNS  文档</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -42,25 +42,25 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="sgas">
-<h1>SGAS合约手册<a class="headerlink" href="#sgas" title="永久链接至标题">¶</a></h1>
+  <div class="section" id="CGAS">
+<h1>CGAS合约手册<a class="headerlink" href="#CGAS" title="永久链接至标题">¶</a></h1>
 <p>基于NEO进行dapp开发的过程中，基于UTXO的GAS并不方便作为dapp的代币使用，
 于是为了便于在DAPP中直接接入GAS，
-NEL开发了基于NEP5的SGAS合约，用于与GAS进行一比一兑换，
+NEL开发了基于NEP5的CGAS合约，用于与GAS进行一比一兑换，
 搭建了应用合约与UTXO之间的桥梁。</p>
-<p>尽管SGAS开发的初衷是为了NNS域名竞拍系统的功能实现，
-但是在设计的时候便将SGAS定义为一种通用的NEP5合约，
-因此任何需要在DAPP中使用GAS作为燃料的合约都可以直接使用SGAS。</p>
-<p>除了标准的NEP5合约接口和功能之外，SGAS合约增加了SGAS和GAS互相兑换的功能。</p>
+<p>尽管CGAS开发的初衷是为了NNS域名竞拍系统的功能实现，
+但是在设计的时候便将CGAS定义为一种通用的NEP5合约，
+因此任何需要在DAPP中使用GAS作为燃料的合约都可以直接使用CGAS。</p>
+<p>除了标准的NEP5合约接口和功能之外，CGAS合约增加了CGAS和GAS互相兑换的功能。</p>
 <div class="section" id="id1">
-<h2>兑换SGAS<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
-<p>通过GAS兑换SGAS的步骤是:</p>
+<h2>兑换CGAS<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>通过GAS兑换CGAS的步骤是:</p>
 <ul class="simple">
-<li>用户通过转账将自己持有的GAS转到SGAS合约账户</li>
-<li>将交易id传递给SGAS，并调用sgas合约的mintTokens方法。</li>
+<li>用户通过转账将自己持有的GAS转到CGAS合约账户</li>
+<li>将交易id传递给CGAS，并调用CGAS合约的mintTokens方法。</li>
 </ul>
 <p>交易脚本结构：</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>appCall: DAPP_SGAS
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>appCall: DAPP_CGAS
 method:  mintTokens
 params:  []
 交易类型：InvocationTransaction
@@ -76,10 +76,10 @@ params:  []
         <span class="n">var</span> <span class="n">array</span> <span class="o">=</span> <span class="n">new</span> <span class="n">MyJson</span><span class="o">.</span><span class="n">JsonNode_Array</span><span class="p">();</span>
         <span class="n">sb</span><span class="o">.</span><span class="n">EmitParamJson</span><span class="p">(</span><span class="n">array</span><span class="p">);</span><span class="o">//</span><span class="n">参数倒序入</span>
         <span class="n">sb</span><span class="o">.</span><span class="n">EmitParamString</span><span class="p">(</span><span class="s2">&quot;mintTokens&quot;</span><span class="p">);</span><span class="o">//</span><span class="n">参数倒序入</span>
-        <span class="n">sb</span><span class="o">.</span><span class="n">EmitAppCall</span><span class="p">(</span><span class="n">DAPP_SGAS</span><span class="p">);</span><span class="o">//</span><span class="n">nep5脚本</span>
+        <span class="n">sb</span><span class="o">.</span><span class="n">EmitAppCall</span><span class="p">(</span><span class="n">DAPP_CGAS</span><span class="p">);</span><span class="o">//</span><span class="n">nep5脚本</span>
         <span class="n">script</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="n">ToArray</span><span class="p">();</span>
     <span class="p">}</span>
-    <span class="n">var</span> <span class="n">target</span> <span class="o">=</span> <span class="n">ThinNeo</span><span class="o">.</span><span class="n">Helper</span><span class="o">.</span><span class="n">GetAddressFromScriptHash</span><span class="p">(</span><span class="n">DAPP_SGAS</span><span class="p">);</span>
+    <span class="n">var</span> <span class="n">target</span> <span class="o">=</span> <span class="n">ThinNeo</span><span class="o">.</span><span class="n">Helper</span><span class="o">.</span><span class="n">GetAddressFromScriptHash</span><span class="p">(</span><span class="n">DAPP_CGAS</span><span class="p">);</span>
     <span class="n">subPrintLine</span><span class="p">(</span><span class="s2">&quot;contract address=&quot;</span> <span class="o">+</span> <span class="n">target</span><span class="p">);</span><span class="o">//</span><span class="n">往合约地址转账</span>
 
     <span class="o">//</span><span class="n">生成交易</span>
@@ -120,27 +120,27 @@ params:  []
 </div>
 <div class="section" id="gas">
 <h2>兑换GAS<a class="headerlink" href="#gas" title="永久链接至标题">¶</a></h2>
-<p>兑换GAS的原理是用户发送兑换请求，然后从SGAS合约账户中转出指定额度的GAS到用户账户中，同时在用户账户中销毁指定额度的SGAS。</p>
-<p>出于安全考虑，NEO合约账户并不能主动发起utxo交易，因此用户通过SGAS兑换GAS的过程相较于GAS兑换SGAS要复杂一些。</p>
-<p>为了实现用户兑换GAS时的自动触发，用户首先需要发送交易在SGAS合约账户中生成一笔指定额度的output。</p>
-<p>然后调用SGAS合约的refund方法，在refund方法中，会将这笔output标记为只有该用户可以领取。</p>
-<p>用户在成功在SGAS合约账户创建output并标记之后，就可以从SGAS账户中转出这笔GAS了。</p>
+<p>兑换GAS的原理是用户发送兑换请求，然后从CGAS合约账户中转出指定额度的GAS到用户账户中，同时在用户账户中销毁指定额度的CGAS。</p>
+<p>出于安全考虑，NEO合约账户并不能主动发起utxo交易，因此用户通过CGAS兑换GAS的过程相较于GAS兑换CGAS要复杂一些。</p>
+<p>为了实现用户兑换GAS时的自动触发，用户首先需要发送交易在CGAS合约账户中生成一笔指定额度的output。</p>
+<p>然后调用CGAS合约的refund方法，在refund方法中，会将这笔output标记为只有该用户可以领取。</p>
+<p>用户在成功在CGAS合约账户创建output并标记之后，就可以从CGAS账户中转出这笔GAS了。</p>
 <p>因此兑换GAS需要分为两步：</p>
 <ul class="simple">
 <li>第一步：拆分output并标记。</li>
 <li>第二步：领取GAS。</li>
 </ul>
-<p>拆分output是通过SGAS合约账户自己向自己账户转账的形式构造出一个指定金额的output，然后通过调用SGAS合约的refund方法将这个output标记为只能转账给该用户。</p>
+<p>拆分output是通过CGAS合约账户自己向自己账户转账的形式构造出一个指定金额的output，然后通过调用CGAS合约的refund方法将这个output标记为只能转账给该用户。</p>
 <div class="admonition warning">
 <p class="first admonition-title">警告</p>
-<p class="last">但是由于根据用户地址获取到的output很可能存在上一个共识周期里被别的用户标记过的，因此需要拆分output之前先向SGAS合约查询一下该output是否已经被标记过</p>
+<p class="last">但是由于根据用户地址获取到的output很可能存在上一个共识周期里被别的用户标记过的，因此需要拆分output之前先向CGAS合约查询一下该output是否已经被标记过</p>
 </div>
 <p>脚本构造如下：</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>appCall:DAPP_SGAS
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>appCall:DAPP_CGAS
 method:refund
 params:[who]
 交易类型：InvocationTransaction
-签名：SGAS合约签名，用户签名
+签名：CGAS合约签名，用户签名
 </pre></div>
 </div>
 <p>交易构造示例代码：</p>
@@ -153,13 +153,13 @@ params:[who]
         <span class="n">array</span><span class="o">.</span><span class="n">AddArrayValue</span><span class="p">(</span><span class="s2">&quot;(bytes)&quot;</span> <span class="o">+</span> <span class="n">ThinNeo</span><span class="o">.</span><span class="n">Helper</span><span class="o">.</span><span class="n">Bytes2HexString</span><span class="p">(</span><span class="n">scriptHash</span><span class="p">));</span>
         <span class="n">sb</span><span class="o">.</span><span class="n">EmitParamJson</span><span class="p">(</span><span class="n">array</span><span class="p">);</span><span class="o">//</span><span class="n">参数倒序入</span>
         <span class="n">sb</span><span class="o">.</span><span class="n">EmitParamJson</span><span class="p">(</span><span class="n">new</span> <span class="n">MyJson</span><span class="o">.</span><span class="n">JsonNode_ValueString</span><span class="p">(</span><span class="s2">&quot;(str)refund&quot;</span><span class="p">));</span><span class="o">//</span><span class="n">参数倒序入</span>
-        <span class="n">var</span> <span class="n">shash</span> <span class="o">=</span> <span class="n">Config</span><span class="o">.</span><span class="n">dapp_sgas</span><span class="p">;</span>
+        <span class="n">var</span> <span class="n">shash</span> <span class="o">=</span> <span class="n">Config</span><span class="o">.</span><span class="n">dapp_CGAS</span><span class="p">;</span>
         <span class="n">sb</span><span class="o">.</span><span class="n">EmitAppCall</span><span class="p">(</span><span class="n">shash</span><span class="p">);</span><span class="o">//</span><span class="n">nep5脚本</span>
         <span class="n">script</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="n">ToArray</span><span class="p">();</span>
     <span class="p">}</span>
 
-    <span class="o">//</span><span class="n">sgas</span> <span class="n">自己给自己转账</span>   <span class="n">用来生成一个utxo</span>  <span class="n">合约会把这个utxo标记给发起的地址使用</span>
-    <span class="n">tran</span> <span class="o">=</span> <span class="n">Helper</span><span class="o">.</span><span class="n">makeTran</span><span class="p">(</span><span class="n">newlist</span><span class="p">,</span> <span class="n">sgas_address</span><span class="p">,</span> <span class="n">new</span> <span class="n">Hash256</span><span class="p">(</span><span class="n">Config</span><span class="o">.</span><span class="n">id_GAS</span><span class="p">),</span> <span class="n">amount</span><span class="p">);</span>
+    <span class="o">//</span><span class="n">CGAS</span> <span class="n">自己给自己转账</span>   <span class="n">用来生成一个utxo</span>  <span class="n">合约会把这个utxo标记给发起的地址使用</span>
+    <span class="n">tran</span> <span class="o">=</span> <span class="n">Helper</span><span class="o">.</span><span class="n">makeTran</span><span class="p">(</span><span class="n">newlist</span><span class="p">,</span> <span class="n">CGAS_address</span><span class="p">,</span> <span class="n">new</span> <span class="n">Hash256</span><span class="p">(</span><span class="n">Config</span><span class="o">.</span><span class="n">id_GAS</span><span class="p">),</span> <span class="n">amount</span><span class="p">);</span>
     <span class="n">tran</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">TransactionType</span><span class="o">.</span><span class="n">InvocationTransaction</span><span class="p">;</span>
     <span class="n">var</span> <span class="n">idata</span> <span class="o">=</span> <span class="n">new</span> <span class="n">InvokeTransData</span><span class="p">();</span>
     <span class="n">tran</span><span class="o">.</span><span class="n">extdata</span> <span class="o">=</span> <span class="n">idata</span><span class="p">;</span>
@@ -194,7 +194,7 @@ params:[who]
 </pre></div>
 </div>
 <p>交易在新一轮的共识中，如果交易验证成功，就可以进行GAS兑换的第二步了。</p>
-<p>在上一步中，已经成功在SGAS合约账户中创建了指定金额的GAS的output，此时，只要构造交易，从合约账户中转出这笔output就可以了。</p>
+<p>在上一步中，已经成功在CGAS合约账户中创建了指定金额的GAS的output，此时，只要构造交易，从合约账户中转出这笔output就可以了。</p>
 <p>交易需要的output的构造如下</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Utxo</span> <span class="n">utxo</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Utxo</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">txid</span><span class="p">,</span> <span class="n">Config</span><span class="o">.</span><span class="n">id_GAS</span><span class="p">,</span> <span class="n">amount</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 </pre></div>
@@ -223,8 +223,8 @@ params:[who]
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">內容目录</a></h3>
   <ul>
-<li><a class="reference internal" href="#">SGAS合约手册</a><ul>
-<li><a class="reference internal" href="#id1">兑换SGAS</a></li>
+<li><a class="reference internal" href="#">CGAS合约手册</a><ul>
+<li><a class="reference internal" href="#id1">兑换CGAS</a></li>
 <li><a class="reference internal" href="#gas">兑换GAS</a></li>
 </ul>
 </li>
@@ -239,7 +239,7 @@ params:[who]
   <div role="note" aria-label="source link">
     <h3>本页</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/nns_dev_guide_sgas.rst.txt"
+      <li><a href="_sources/nns_dev_guide_CGAS.rst.txt"
             rel="nofollow">显示源代码</a></li>
     </ul>
    </div>

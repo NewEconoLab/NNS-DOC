@@ -196,10 +196,10 @@ params:      [from,to,value]
 </div>
 <div class="section" id="id8">
 <h2>合约调用NNC转账<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h2>
-<p>本方法是为了提供NNS转入SGAS手续费的时候使用，仅仅能从别的合约动态调用，无法通过交易触发。</p>
-<p>本接口首先通过SGAS合约将注册器合约收取的手续费转入到NNC合约地址，然后调用NNC，标记转入的SGAS数量。</p>
+<p>本方法是为了提供NNS转入CGAS手续费的时候使用，仅仅能从别的合约动态调用，无法通过交易触发。</p>
+<p>本接口首先通过CGAS合约将注册器合约收取的手续费转入到NNC合约地址，然后调用NNC，标记转入的CGAS数量。</p>
 <p>合约脚本格式：</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>appCall: DAPP_SGAS
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>appCall: DAPP_CGAS
 method:      transfer_app
 params:      [who,target,value]
 appCall: DAPP_NCC
@@ -220,7 +220,7 @@ params:      [txid]
 </div>
 <div class="section" id="id9">
 <h2>领取分红<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h2>
-<p>NNS系统的域名注册手续费收益会完全再分配给NNC的持有者，用户可以通过调用本方法领取属于自己的SGAS分红。</p>
+<p>NNS系统的域名注册手续费收益会完全再分配给NNC的持有者，用户可以通过调用本方法领取属于自己的CGAS分红。</p>
 <p>合约脚本格式：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>appCall: DAPP_REG
 method:      claim
@@ -274,7 +274,7 @@ params:     [who]
 </div>
 <div class="section" id="id11">
 <h2>查询系统费收入<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h2>
-<p>通过调用这个接口可以获取到当前NNS系统已收取且未被cliam的sgas手续费总量。</p>
+<p>通过调用这个接口可以获取到当前NNS系统已收取且未被cliam的CGAS手续费总量。</p>
 <p>合约脚本格式：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>appCall:  DAPP_REG
 method:       getTotalMoney

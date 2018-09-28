@@ -16,7 +16,7 @@
 常量
 ~~~~~~~~
 
-1. SGAS 合约：     DAPP_SGAS     => hex160
+1. CGAS 合约：     DAPP_CGAS     => hex160
 #. NNC合约：       DAPP_NNC      => hex160
 #. 竞拍注册器：     DAPP_REG     =>  hex160
 #. 先到先得注册器： DAPP_REG_FIFO => hex160

@@ -522,16 +522,16 @@ xxx)的形式。 xxx 均是scripthash。</p>
 <p>交易服务支持域名登记员发布域名所有权转让邀约，支持固定价格转让和荷兰式减价拍卖方式转让。</p>
 </div>
 </div>
-<div class="section" id="sgas">
-<h2>可循环分配代币SGAS技术实现<a class="headerlink" href="#sgas" title="永久链接至标题">¶</a></h2>
+<div class="section" id="CGAS">
+<h2>可循环分配代币CGAS技术实现<a class="headerlink" href="#CGAS" title="永久链接至标题">¶</a></h2>
 <p>为了实现NNS系统的良性发展，NNS引入了可循环的代币系统，同时引入股权代币用以对系统收益的再分配提供证明。系统的组成分为三个部分：</p>
 <ol class="arabic simple">
 <li>NNC股权证明代币</li>
-<li>SGAS NEP5代币合约。</li>
+<li>CGAS NEP5代币合约。</li>
 <li>Coinpool 奖金池合约。</li>
 </ol>
 <p>NNC主要作用是在域名拍卖获得的收益进行再分配时提供股权证明。</p>
-<p>SGAS是为了方便将GAS用于应用合约中而引入的与GAS <em>1:1</em> 绑定的NEP5资产。CoinPool是接收域名拍卖手续费并进行再分配管理的合约。</p>
+<p>CGAS是为了方便将GAS用于应用合约中而引入的与GAS <em>1:1</em> 绑定的NEP5资产。CoinPool是接收域名拍卖手续费并进行再分配管理的合约。</p>
 <div class="section" id="id33">
 <h3>重新分配机制<a class="headerlink" href="#id33" title="永久链接至标题">¶</a></h3>
 <p>NNS在用户进行域名拍卖的时候会收取手续费，这笔手续费收益将依据NNS用户的NNC持有数量进行再分配，完全重新分配给NNC持有者。</p>
@@ -542,25 +542,25 @@ xxx)的形式。 xxx 均是scripthash。</p>
 </div>
 <div class="section" id="id35">
 <h3>奖池细节<a class="headerlink" href="#id35" title="永久链接至标题">¶</a></h3>
-<p>域名拍卖收取到的所有SGAS都会重新分配出去。分配的比例参照用户NNC持有量。出于成本考虑，我们用一万个块做单位来统计和分配收取到的SGAS。当用户拥有一笔NNC utxo资产并至少跨两个单位将它使用后，你将可以分红到从拥有到使用之间的SGAS。每笔NNC utxo资产在领取sgas时最高只能领取15个单位内的SGAS，如果持有时间超过15单位，将分多次领取。也就是说，用户如果一直持有这份UTXO没有交易出去，那么将会一直收到SGAS的分红，但是无法领取，只有用户将UTXO交易出去后，才能领取对应的分红。</p>
-<div class="section" id="sgas-nep5">
-<h4>SGAS接口（仅述相比NEP5多出来的接口）<a class="headerlink" href="#sgas-nep5" title="永久链接至标题">¶</a></h4>
-<p>SGAS首先符合NEP5规范，NEP规范接口不再赘述</p>
+<p>域名拍卖收取到的所有CGAS都会重新分配出去。分配的比例参照用户NNC持有量。出于成本考虑，我们用一万个块做单位来统计和分配收取到的CGAS。当用户拥有一笔NNC utxo资产并至少跨两个单位将它使用后，你将可以分红到从拥有到使用之间的CGAS。每笔NNC utxo资产在领取CGAS时最高只能领取15个单位内的CGAS，如果持有时间超过15单位，将分多次领取。也就是说，用户如果一直持有这份UTXO没有交易出去，那么将会一直收到CGAS的分红，但是无法领取，只有用户将UTXO交易出去后，才能领取对应的分红。</p>
+<div class="section" id="CGAS-nep5">
+<h4>CGAS接口（仅述相比NEP5多出来的接口）<a class="headerlink" href="#CGAS-nep5" title="永久链接至标题">¶</a></h4>
+<p>CGAS首先符合NEP5规范，NEP规范接口不再赘述</p>
 <p><strong>mintTokens</strong></p>
-<p>通过GAS换取等量的SGAS，通过InvokeContract，转账到SGAS合约账户，然后调用合约的mintTokens转等量的SGAS到自己的账户。需要签名。</p>
+<p>通过GAS换取等量的CGAS，通过InvokeContract，转账到CGAS合约账户，然后调用合约的mintTokens转等量的CGAS到自己的账户。需要签名。</p>
 <p><strong>refund</strong></p>
-<p>通过SGAS合约将SGAS兑换为等量GAS，由SGAS合约对用户进行身份校验然后构造合约交易将SGAS合约账户的GAS转到用户账户，同时扣取用户账户的SGAS。需要签名。</p>
+<p>通过CGAS合约将CGAS兑换为等量GAS，由CGAS合约对用户进行身份校验然后构造合约交易将CGAS合约账户的GAS转到用户账户，同时扣取用户账户的CGAS。需要签名。</p>
 <p><strong>migrate</strong></p>
 <p>用于合约升级，当合约出现问题需要更新版本时使用。只有超级管理员有权限调用。</p>
 </div>
 <div class="section" id="coinpool">
 <h4>CoinPool接口<a class="headerlink" href="#coinpool" title="永久链接至标题">¶</a></h4>
-<p><strong>setSGASIn(byte[] txid)</strong></p>
-<p>由NNS注册器合约调用，用于向奖池转sgas收益。需要合约地址验证。只能通过NNS注册器调用。参数txid为转账交易的交易id。</p>
-<p><strong>countSGASOnBlock(BigInteger blockid)</strong></p>
+<p><strong>setCGASIn(byte[] txid)</strong></p>
+<p>由NNS注册器合约调用，用于向奖池转CGAS收益。需要合约地址验证。只能通过NNS注册器调用。参数txid为转账交易的交易id。</p>
+<p><strong>countCGASOnBlock(BigInteger blockid)</strong></p>
 <p>用于查看保存在指定区块区间内的奖金数量。参数blockId为查询的区块高度。</p>
 <p><strong>Claim</strong></p>
-<p>用于用户领取奖池内的SGAS奖励。</p>
+<p>用于用户领取奖池内的CGAS奖励。</p>
 </div>
 </div>
 </div>
@@ -629,11 +629,11 @@ xxx)的形式。 xxx 均是scripthash。</p>
 <li><a class="reference internal" href="#id32">交易服务</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#sgas">可循环分配代币SGAS技术实现</a><ul>
+<li><a class="reference internal" href="#CGAS">可循环分配代币CGAS技术实现</a><ul>
 <li><a class="reference internal" href="#id33">重新分配机制</a></li>
 <li><a class="reference internal" href="#id34">领奖机制</a></li>
 <li><a class="reference internal" href="#id35">奖池细节</a><ul>
-<li><a class="reference internal" href="#sgas-nep5">SGAS接口（仅述相比NEP5多出来的接口）</a></li>
+<li><a class="reference internal" href="#CGAS-nep5">CGAS接口（仅述相比NEP5多出来的接口）</a></li>
 <li><a class="reference internal" href="#coinpool">CoinPool接口</a></li>
 </ul>
 </li>

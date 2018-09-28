@@ -5,7 +5,7 @@ NNS开发者手册
 .. toctree::
 
     nns_dev_guide_nns
-    nns_dev_guide_sgas
+    nns_dev_guide_CGAS
     nns_dev_api
     nns_dev_guide_config
 
@@ -18,7 +18,7 @@ NNS开发者手册
 #. 标准解析器 ****************** 0xd7bb680b4318f0823e968a5a067fc8bef35d13a1
 #. 先到先得注册器 ************** 0x4e02db8842aa400a4abd77e4bdf23c54ba4aa90e
 #. 拍卖注册器 ****************** 0xd90d82bf64083312b0b7b8dc668d633cf56899ec
-#. SGAS *********************** 0xc7816d11287c08135f4e5f907af9e39754910ba3
+#. CGAS *********************** 0xc7816d11287c08135f4e5f907af9e39754910ba3
 #. nnc *********************** 0xd8fa0cfdd54493dfc9e908b26ba165605363137b
 
 
